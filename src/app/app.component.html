@@ -9,11 +9,11 @@
         <a routerLink="/challenges">Challenges</a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="/dashboard" *ngIf="authService.isAuthenticated()">My Challenges</a>
+        <a routerLink="/dashboard" *ngIf="isAuthenticated()">My Challenges</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <ng-template [ngIf]="!authService.isAuthenticated()">
+      <ng-template [ngIf]="!isAuthenticated()">
         <li>
           <a 
             style="cursor: pointer;"
@@ -26,7 +26,7 @@
         </li>
       </ng-template>
 
-      <ng-template [ngIf]="authService.isAuthenticated()">
+      <ng-template [ngIf]="isAuthenticated()">
         <li><a class="welcome-user">Welcome, {{ authService.userProfile.given_name }}!</a></li>
         <li>
           <a 
@@ -40,10 +40,10 @@
 
 <main class="container">
   <div class="row">
-    <div class="col-md-4 sidebar" *ngIf="authService.isAuthenticated()">
+    <div class="col-md-4 sidebar" *ngIf="isAuthenticated()">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-8' : 'col-md-12'">
+    <div class="col-sm-12" [ngClass]="isAuthenticated() ? 'col-md-8' : 'col-md-12'">
       <router-outlet></router-outlet>
     </div>
   </div>

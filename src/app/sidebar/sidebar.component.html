@@ -3,15 +3,15 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="profile-heading">
-          <img class="profile-picture img-responsive" [src]="authService.userProfile.picture_large" alt="Profile Picture">
+          <img class="profile-picture img-responsive" [src]="profile.picture_large" alt="Profile Picture">
           <div class="user-info">
-            <h5>{{ authService.userProfile.name }}</h5>
+            <h5>{{ profile.name }}</h5>
             <p>Score: 9999</p>
           </div>
         </div>
       </div>
       <div class="panel-body">
-        <img class="img-responsive" [src]="authService.userProfile.cover.source" alt="Cover Image">
+        <img class="img-responsive" [src]="profile.cover.source" alt="Cover Image">
       </div>
     </div>
   </div>

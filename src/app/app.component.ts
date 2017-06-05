@@ -18,4 +18,7 @@ export class AppComponent implements OnInit {
     console.log(this.authService.userProfile);
   }
 
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
 }

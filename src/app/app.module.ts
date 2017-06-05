@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
 //  Routing
 import { AppRoutingModule } from "./app.routing.module";
+import { AuthModule } from "./auth/auth.module";
 //  Components
 import { AppComponent } from './app.component';
 import { ChallengesPublicComponent } from './challenges/challenges-public/challenges-public.component';
@@ -28,9 +28,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule
   ],
-  providers: [ChallengeService, AuthService, AuthGuard, AUTH_PROVIDERS],
+  providers: [ChallengeService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

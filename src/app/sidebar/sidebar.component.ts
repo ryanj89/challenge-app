@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  profile: any;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.profile = this.authService.userProfile;
   }
 
 }
