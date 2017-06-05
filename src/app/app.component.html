@@ -40,11 +40,10 @@
 
 <main class="container">
   <div class="row">
-    <div class="col-md-3 sidebar" *ngIf="authService.isAuthenticated()">
+    <div class="col-md-4 sidebar" *ngIf="authService.isAuthenticated()">
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-9' : 'col-md-12'">
-      {{ authService.isAuthenticated() }}
+    <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-8' : 'col-md-12'">
       <router-outlet></router-outlet>
     </div>
   </div>

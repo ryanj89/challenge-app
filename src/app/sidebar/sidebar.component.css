@@ -1,8 +1,13 @@
 .profile-picture {
-  border-radius: 25px;
+  border-radius: 50px;
+  max-height: 80px;
 }
 .profile-heading {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.user-info {
+  text-align: right;
 }
