@@ -1,3 +1,51 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar main-navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">ChallengeApp</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active">
+        <a routerLink="/challenges">Challenges</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/dashboard" *ngIf="authService.isAuthenticated()">My Challenges</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li>
+          <a 
+            style="cursor: pointer;"
+            (click)="authService.login()">Signup</a>
+        </li>
+        <li>
+          <a 
+            style="cursor: pointer;"
+            (click)="authService.login()">Login</a>
+        </li>
+      </ng-template>
+
+      <ng-template [ngIf]="authService.isAuthenticated()">
+        <li><a class="welcome-user">Welcome, {{ authService.userProfile.given_name }}!</a></li>
+        <li>
+          <a 
+            style="cursor: pointer;" 
+            (click)="authService.logout()">Logout</a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-3 sidebar" *ngIf="authService.isAuthenticated()">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-9' : 'col-md-12'">
+      {{ authService.isAuthenticated() }}
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>

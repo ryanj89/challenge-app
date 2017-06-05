@@ -1,0 +1,8 @@
+.profile-picture {
+  border-radius: 25px;
+}
+.profile-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
