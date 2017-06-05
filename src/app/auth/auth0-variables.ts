@@ -13,5 +13,5 @@ export const AUTH_CONFIG: AuthConfig = {
   RESPONSE_TYPE: 'token id_token',
   AUDIENCE: 'https://rynj.auth0.com/userinfo',
   REDIRECT: 'http://localhost:4200/callback',
-  SCOPE: 'openid profile'
+  SCOPE: 'openid profile read:user_idp_tokens'
 };
