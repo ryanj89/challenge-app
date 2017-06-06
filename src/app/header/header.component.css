@@ -1,0 +1,13 @@
+.main-navbar {
+  background-color: rgba(5, 178, 132, 0.85);
+}
+.main-navbar a {
+  color: #fff;
+}
+.main-navbar a:hover {
+  background-color: rgba(5, 178, 132, 1);
+
+}
+.sidebar {
+  height: 506px;
+}

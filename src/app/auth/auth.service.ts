@@ -26,7 +26,7 @@ export class AuthService {
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
 
   constructor(private router: Router, private http: Http) {
-    if (this.isAuthenticated()) {
+    if (this.authenticated) {
       this.setLoggedIn(true);
     }
   }
@@ -50,11 +50,10 @@ export class AuthService {
   //  Looks for an authentication result in the URL hash and processes it with the parseHash method from auth0.js
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
-      console.log('Parsing Hash...', authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this._getProfile(authResult);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/challenges']);
       } else if (err) {
         this.router.navigate(['/']);
         console.log(`Error: ${err.error}`);
@@ -109,4 +108,7 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
+  get authenticated() {
+    return tokenNotExpired('access_token');
+  }
 }

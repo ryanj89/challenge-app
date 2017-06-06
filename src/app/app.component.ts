@@ -15,10 +15,9 @@ export class AppComponent implements OnInit {
     if (localStorage.getItem('profile')) {
       this.authService.userProfile = JSON.parse(localStorage.getItem('profile'));
     }
-    console.log(this.authService.userProfile);
   }
 
   isAuthenticated() {
-    return this.authService.isAuthenticated();
+    return this.authService.authenticated;
   }
 }

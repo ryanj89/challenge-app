@@ -3,26 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //  Routing
-import { AppRoutingModule } from "./app.routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { AuthModule } from "./auth/auth.module";
 //  Components
 import { AppComponent } from './app.component';
-import { ChallengesPublicComponent } from './challenges/challenges-public/challenges-public.component';
-import { ChallengesPrivateComponent } from './challenges/challenges-private/challenges-private.component';
+import { CallbackComponent } from './auth/callback/callback.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChallengesComponent } from "./challenges/challenges.component";
+import { ChallengeListComponent } from './challenges/challenge-list/challenge-list.component';
 //  Services
+import { DatabaseService } from './shared/database.service';
 import { ChallengeService } from './challenges/challenge.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from "./auth/auth-guard.service";
-import { CallbackComponent } from './auth/callback/callback.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChallengesPublicComponent,
-    ChallengesPrivateComponent,
+    ChallengesComponent,
     CallbackComponent,
-    SidebarComponent
+    SidebarComponent,
+    HomeComponent,
+    HeaderComponent,
+    ChallengeListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AppRoutingModule,
     AuthModule
   ],
-  providers: [ChallengeService, AuthService, AuthGuard],
+  providers: [ChallengeService, DatabaseService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
