@@ -20,6 +20,7 @@ export class DatabaseService {
       return this.http.get(this.PUBLIC_CHALLENGES_URL)
         .map((response: Response) => {
           const challenges: Challenge[] = response.json();
+          console.log(challenges);
           return challenges;
         })
         .subscribe(

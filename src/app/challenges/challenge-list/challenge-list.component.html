@@ -5,9 +5,16 @@
         <h3 class="panel-title">{{ challenge.name }}</h3>
       </div>
       <div class="panel-body">
-        <span>{{ challenge.created | date }}</span>
+        <span>{{ challenge.created_at | date }}</span>
         <br>
         <p>{{ challenge.description }}</p>
+        name: {{ challenge.name }}
+        description: {{ challenge.description }}
+        created_at: {{ challenge.created_at }}
+        video_url: {{ challenge.video_url }}
+        creator_id: {{ challenge.creator_id }}
+        category: {{ challenge.category }}
+        points: {{ challenge.points }}
       </div>
       <!--<div class="panel-footer">
         <ul class="list-inline">

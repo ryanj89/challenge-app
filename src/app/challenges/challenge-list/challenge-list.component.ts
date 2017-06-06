@@ -13,7 +13,7 @@ import { ChallengeService } from '../challenge.service';
 export class ChallengeListComponent implements OnInit {
 
   challenges: Challenge[];
-  subscription: Subscription;
+  challengeSubscription: Subscription;
 
   constructor(private challengeService: ChallengeService, private databaseService: DatabaseService) {
     databaseService.getPublicChallenges()
@@ -21,7 +21,7 @@ export class ChallengeListComponent implements OnInit {
 
   ngOnInit() {
     //  Subscribe to changes of challenges
-    this.subscription = this.challengeService.challengesChanged
+    this.challengeSubscription = this.challengeService.challengesChanged
       .subscribe((challenges: Challenge[]) => {
         this.challenges = challenges;
       });
@@ -30,6 +30,6 @@ export class ChallengeListComponent implements OnInit {
 
   ngOnDestroy() {
     //  Unsubscribe when component is destroyed
-    this.subscription.unsubscribe();
+    this.challengeSubscription.unsubscribe();
   }
 }
