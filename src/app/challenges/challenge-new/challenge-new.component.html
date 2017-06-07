@@ -1,0 +1,85 @@
+
+<h3>New Challenge</h3>
+<hr>
+<form (ngSubmit)="onSubmit(challengeForm)" #challengeForm="ngForm">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name"
+          ngModel
+          required
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="points">Points</label>
+        <input 
+          type="number" 
+          id="points" 
+          name="points"
+          ngModel
+          required
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="expires_at">Date to Complete</label>
+        <input 
+          type="date" 
+          id="expires_at" 
+          name="expires_at"
+          ngModel
+          required
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="video_url">Video URL</label>
+        <input 
+          type="text" 
+          id="video_url" 
+          name="video_url"
+          ngModel
+          required
+          class="form-control">
+      </div>
+
+      <!--<div class="form-group">
+        <label for="category">Category</label>
+        <select 
+          id="category" 
+          name="category" 
+          ngModel 
+          required 
+          class="form-control">
+        </select>
+      </div>-->
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+          type="text" 
+          id="description" 
+          name="description"
+          ngModel
+          required
+          rows="6"
+          class="form-control"></textarea>
+      </div>
+
+      <button 
+        class="btn btn-success" 
+        [disabled]="!challengeForm.valid"
+        type="submit">Create</button>
+      <button 
+        (click)="onClear()"
+        class="btn btn-default" 
+        type="button">Clear</button>
+    </div>
+  </div>
+</form>

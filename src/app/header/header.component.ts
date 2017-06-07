@@ -8,18 +8,15 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  profile: any;
 
-  constructor(private authService: AuthService) { }
-
-  onLogin() {
-    this.authService.login();
-  }
-
-  onLogout() {
-    this.authService.logout();
-  }
-
-  isAuthenticated() {
-    return this.authService.authenticated;
+  constructor(private authService: AuthService) {
+    const profile = localStorage.getItem('profile');
+    if (profile) {
+      this.profile = JSON.parse(profile);
+    }
+    this.authService.onLoggedIn.subscribe(updatedProfile => {
+      this.profile = updatedProfile;
+    });
   }
 }

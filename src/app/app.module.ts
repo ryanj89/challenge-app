@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //  Routing
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./app.routing.module";
 import { AuthModule } from "./auth/auth.module";
 //  Components
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { DatabaseService } from './shared/database.service';
 import { ChallengeService } from './challenges/challenge.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from "./auth/auth-guard.service";
+import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthGuard } from "./auth/auth-guard.service";
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
-    ChallengeListComponent
+    ChallengeListComponent,
+    ChallengeNewComponent
   ],
   imports: [
     BrowserModule,

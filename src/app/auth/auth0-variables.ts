@@ -16,5 +16,5 @@ export const AUTH_CONFIG: AuthConfig = {
   AUDIENCE: 'challenge-app-api',
   // AUDIENCE: 'https://rynj.auth0.com/userinfo',
   REDIRECT: 'http://localhost:4200/callback',
-  SCOPE: 'openid profile read:user_idp_tokens'
+  SCOPE: 'openid profile email read:user_idp_tokens'
 };

@@ -13,11 +13,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('profile')) {
-      this.authService.userProfile = JSON.parse(localStorage.getItem('profile'));
+      this.authService.profile = JSON.parse(localStorage.getItem('profile'));
     }
-  }
-
-  isAuthenticated() {
-    return this.authService.authenticated;
+    console.log('Authenticated?', this.authService.isAuthenticated());
   }
 }

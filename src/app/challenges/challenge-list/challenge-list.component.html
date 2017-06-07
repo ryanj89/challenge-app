@@ -1,20 +1,34 @@
 <div class="row">
+  <div class="col-xs-12">
+    <br>
+    <a 
+      routerLink="new"
+      type="button" 
+      class="btn btn-primary">Create Challenge</a>
+  </div>
+</div>
+<hr>
+<div class="row">
   <div class="col-xs-12" *ngFor="let challenge of challenges">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">{{ challenge.name }}</h3>
+        <p>{{ challenge.creator }}</p>
+        <span>{{ challenge.created_at | date }}</span>
+        <span>points: {{ challenge.points }}</span>
       </div>
       <div class="panel-body">
-        <span>{{ challenge.created_at | date }}</span>
         <br>
         <p>{{ challenge.description }}</p>
-        name: {{ challenge.name }}
-        description: {{ challenge.description }}
-        created_at: {{ challenge.created_at }}
-        video_url: {{ challenge.video_url }}
-        creator_id: {{ challenge.creator_id }}
-        category: {{ challenge.category }}
-        points: {{ challenge.points }}
+        <ul>
+          <!--<li>name: {{ challenge.name }}</li>-->
+          <li>video_url: {{ challenge.video_url }}</li>
+          <li>category: {{ challenge.category }}</li>
+          <!--<li>description: {{ challenge.description }}</li>-->
+          <!--<li>points: {{ challenge.points }}</li>-->
+          <!--<li>created_at: {{ challenge.created_at }}</li>-->
+          <!--<li>creator_id: {{ challenge.creator_id }}</li>-->
+        </ul>
       </div>
       <!--<div class="panel-footer">
         <ul class="list-inline">

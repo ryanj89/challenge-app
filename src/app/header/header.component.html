@@ -8,33 +8,27 @@
       <li routerLinkActive="active">
         <a routerLink="/challenges">Challenges</a>
       </li>
-      <!--<li routerLinkActive="active">
-        <a routerLink="/dashboard" *ngIf="isAuthenticated()">My Challenges</a>
-      </li>-->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <ng-template [ngIf]="!isAuthenticated()">
+      <ng-template [ngIf]="!authService.isAuthenticated()">
         <li>
           <a 
             style="cursor: pointer;"
-            (click)="onLogin()">Signup</a>
-            <!--(click)="authService.login()">Signup</a>-->
+            (click)="authService.login()">Signup</a>
         </li>
         <li>
           <a 
             style="cursor: pointer;"
-            (click)="onLogin()">Login</a>
-            <!--(click)="authService.login()">Login</a>-->
+            (click)="authService.login()">Login</a>
         </li>
       </ng-template>
 
-      <ng-template [ngIf]="isAuthenticated()">
-        <li><a class="welcome-user">Welcome, {{ authService.userProfile.given_name }}!</a></li>
+      <ng-template [ngIf]="authService.isAuthenticated()">
+        <li><a class="welcome-user">Welcome, {{ profile?.given_name }}!</a></li>
         <li>
           <a 
             style="cursor: pointer;" 
-            (click)="onLogout()">Logout</a>
-            <!--(click)="authService.logout()">Logout</a>-->
+            (click)="authService.logout()">Logout</a>
         </li>
       </ng-template>
     </ul>
