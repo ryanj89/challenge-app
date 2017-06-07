@@ -4,7 +4,8 @@ interface AuthConfig {
   CLIENT_DOMAIN: string;
   RESPONSE_TYPE: string;
   AUDIENCE: string;
-  REDIRECT: string;
+  REDIRECT_PROD: string;
+  REDIRECT_DEV: string;
   SCOPE: string;
 }
 
@@ -15,7 +16,7 @@ export const AUTH_CONFIG: AuthConfig = {
   RESPONSE_TYPE: 'token id_token',
   AUDIENCE: 'challenge-app-api',
   // AUDIENCE: 'https://rynj.auth0.com/userinfo',
-  REDIRECT: 'https://frozen-lowlands-52602.herokuapp.com/callback',
-  // REDIRECT: 'http://localhost:4200/callback',
+  REDIRECT_PROD: 'https://frozen-lowlands-52602.herokuapp.com/callback',
+  REDIRECT_DEV: 'http://localhost:4200/callback',
   SCOPE: 'openid profile email read:user_idp_tokens'
 };

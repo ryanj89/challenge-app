@@ -11,25 +11,39 @@ export class DatabaseService {
   //  API Endpoints
   DATABASE_URL_PRODUCTION: string = 'https://frozen-lowlands-52602.herokuapp.com/api/';
   DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
-  // PUBLIC_CHALLENGES_URL = 'http://localhost:3000/api/challenges/public';
-  // PRIVATE_CHALLENGES_URL = 'http://localhost:3000/api/challenges/private';
+  DATABASE_URL: string;
 
-  constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService) { }
+  constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService) {
+    if (window.location.hostname === 'localhost') {
+      this.DATABASE_URL = this.DATABASE_URL_DEVELOPMENT;
+    } else {
+      this.DATABASE_URL = this.DATABASE_URL_PRODUCTION;
+    }
+  }
 
   //  Get all public challenges
   getPublicChallenges() {
     // if (localStorage.getItem('access_token')) {
-      return this.http.get(this.DATABASE_URL_PRODUCTION + 'challenges')
+      return this.http.get(this.DATABASE_URL + 'challenges')
         .map((response: Response) => {
           const challenges: Challenge[] = response.json();
-          console.log(challenges);
           return challenges;
         })
         .subscribe(
           (challenges: Challenge[]) => this.challengeService.setChallenges(challenges),
-          (err) => console.log(err.message || err)
-        );
+          (err) => console.log(err.message || err));
     // }
+  }
+
+  createChallenge(challenge: Challenge) {
+    return this.authHttp.post(this.DATABASE_URL + 'challenges', challenge)
+      .map((response: Response) => {
+        const challenge: Challenge = response.json();
+        console.log(challenge);
+        return challenge;
+      })
+      .subscribe(
+        (challenge: Challenge) => this.challengeService.addChallenge(challenge));
   }
 
   //  Get Available Private Challenges

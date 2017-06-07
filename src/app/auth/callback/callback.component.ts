@@ -8,7 +8,6 @@ import { AuthService } from '../auth.service';
 })
 export class CallbackComponent {
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) { }
 
 }
