@@ -15,6 +15,7 @@ export const AUTH_CONFIG: AuthConfig = {
   RESPONSE_TYPE: 'token id_token',
   AUDIENCE: 'challenge-app-api',
   // AUDIENCE: 'https://rynj.auth0.com/userinfo',
-  REDIRECT: 'http://localhost:4200/callback',
+  REDIRECT: 'https://frozen-lowlands-52602.herokuapp.com/callback',
+  // REDIRECT: 'http://localhost:4200/callback',
   SCOPE: 'openid profile email read:user_idp_tokens'
 };

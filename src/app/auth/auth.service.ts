@@ -10,7 +10,8 @@ declare var Auth0Lock: any;
 
 @Injectable()
 export class AuthService {
-
+  DATABASE_URL_PRODUCTION: string = 'https://frozen-lowlands-52602.herokuapp.com/api/';
+  DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
   profile: any;
   //  Configure auth0
   lockOptions = {
@@ -29,13 +30,13 @@ export class AuthService {
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) return;
         // Query database to verify or setup user
-        this.http.get('http://localhost:3000/api/users?email=' + profile.email)
+        this.http.get(this.DATABASE_URL_PRODUCTION +'users?email=' + profile.email)
           .toPromise()
           .then(results => {
             const user = results.json();
             if (!user) {
               console.log('No user found!');
-              this.http.post('http://localhost:3000/api/users', profile)
+              this.http.post('users', profile)
                 .toPromise()
                 .then(results => {
                   const newUser = results.json();

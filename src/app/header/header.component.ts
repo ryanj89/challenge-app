@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent {
   profile: any;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     const profile = localStorage.getItem('profile');
     if (profile) {
       this.profile = JSON.parse(profile);

@@ -9,15 +9,17 @@ import { ChallengeService } from '../challenges/challenge.service';
 @Injectable()
 export class DatabaseService {
   //  API Endpoints
-  PUBLIC_CHALLENGES_URL = 'http://localhost:3000/api/challenges/public';
-  PRIVATE_CHALLENGES_URL = 'http://localhost:3000/api/challenges/private';
+  DATABASE_URL_PRODUCTION: string = 'https://frozen-lowlands-52602.herokuapp.com/api/';
+  DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
+  // PUBLIC_CHALLENGES_URL = 'http://localhost:3000/api/challenges/public';
+  // PRIVATE_CHALLENGES_URL = 'http://localhost:3000/api/challenges/private';
 
   constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService) { }
 
   //  Get all public challenges
   getPublicChallenges() {
     // if (localStorage.getItem('access_token')) {
-      return this.http.get(this.PUBLIC_CHALLENGES_URL)
+      return this.http.get(this.DATABASE_URL_PRODUCTION + 'challenges')
         .map((response: Response) => {
           const challenges: Challenge[] = response.json();
           console.log(challenges);

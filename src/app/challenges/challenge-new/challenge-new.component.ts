@@ -36,7 +36,10 @@ export class ChallengeNewComponent implements OnInit {
     console.log(value);
     // const newChallenge = new Challenge(value.name, value.description, new Date(), new Date(),);
     // console.log(newChallenge);
+  }
 
+  onClear() {
+    
   }
 
 }

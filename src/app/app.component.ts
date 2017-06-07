@@ -9,7 +9,7 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
     if (localStorage.getItem('profile')) {
