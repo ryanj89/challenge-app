@@ -19,7 +19,8 @@ export class AuthService {
   lockOptions = {
     auth: {
       redirectUrl: window.location.hostname === 'localhost' ? AUTH_CONFIG.REDIRECT_DEV : AUTH_CONFIG.REDIRECT_PROD,
-      responseType: AUTH_CONFIG.RESPONSE_TYPE
+      responseType: AUTH_CONFIG.RESPONSE_TYPE,
+      params: { scope: 'openid profile email'}
     }
   };
   lock = new Auth0Lock(AUTH_CONFIG.CLIENT_ID, AUTH_CONFIG.CLIENT_DOMAIN, this.lockOptions);

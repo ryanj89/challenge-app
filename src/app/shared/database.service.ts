@@ -24,7 +24,7 @@ export class DatabaseService {
   //  Get all public challenges
   getPublicChallenges() {
     // if (localStorage.getItem('access_token')) {
-      return this.http.get(this.DATABASE_URL + 'challenges')
+      return this.authHttp.get(this.DATABASE_URL + 'challenges')
         .map((response: Response) => {
           const challenges: Challenge[] = response.json();
           return challenges;

@@ -1,7 +1,11 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+//  Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 //  Routing
 import { AppRoutingModule } from "./app.routing.module";
 import { AuthModule } from "./auth/auth.module";
@@ -20,6 +24,8 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from "./auth/auth-guard.service";
 import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.component';
 
+// import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +42,11 @@ import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    MaterialModule,
+    FlexLayoutModule,
+    BrowserAnimationsModule
+
   ],
   providers: [ChallengeService, DatabaseService, AuthService, AuthGuard],
   bootstrap: [AppComponent]

@@ -1,3 +1,19 @@
+<!--<div fxLayout="column" fxFlex>
+
+  <md-toolbar color="primary">
+    <span>Challenge Accepted</span>
+  </md-toolbar>
+
+  <md-sidenav-container fxFlex>
+    <md-sidenav mode="side" opened>
+      Sidenav
+    </md-sidenav>
+    <div class="content">
+      Page Content
+    </div>
+  </md-sidenav-container>
+
+</div>-->
 
 <app-header></app-header>
 
@@ -9,7 +25,6 @@
 
     </div>
     <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-8' : 'col-md-12'">
-
       <router-outlet></router-outlet>
 
     </div>
