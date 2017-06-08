@@ -1,8 +1,6 @@
-import { DatabaseService } from '../shared/database.service';
-import { Subject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Rx';
 import 'rxjs/Rx';
 
 import { Challenge } from "app/challenges/challenge.model";
@@ -22,7 +20,7 @@ export class ChallengeService {
     'misc'
   ];
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
+  constructor(private router: Router) { }
 
   setChallenges(challenges: Challenge[]) {
     this.challenges = challenges;
@@ -36,6 +34,7 @@ export class ChallengeService {
   addChallenge(challenge: Challenge) {
     this.challenges.push(challenge);
     this.challengesChanged.next(this.challenges.slice());
+    this.router.navigate(['/challenges']);
   }
 
 }
