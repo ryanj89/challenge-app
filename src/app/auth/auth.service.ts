@@ -1,3 +1,4 @@
+import { DatabaseService } from '../shared/database.service';
 import { Http } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,10 +11,6 @@ declare var Auth0Lock: any;
 
 @Injectable()
 export class AuthService {
-  DATABASE_URL_PRODUCTION: string = 'https://frozen-lowlands-52602.herokuapp.com/api/';
-  DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
-
-  DATABASE_URL: string;
   profile: any;
   //  Configure auth0
   lockOptions = {
@@ -26,26 +23,20 @@ export class AuthService {
   lock = new Auth0Lock(AUTH_CONFIG.CLIENT_ID, AUTH_CONFIG.CLIENT_DOMAIN, this.lockOptions);
   onLoggedIn: EventEmitter<any> = new EventEmitter<any>();
 
-
-  constructor(private router: Router, private http: Http) {
-    if (window.location.hostname === 'localhost') {
-      this.DATABASE_URL = this.DATABASE_URL_DEVELOPMENT;
-    } else {
-      this.DATABASE_URL = this.DATABASE_URL_PRODUCTION;
-    }
+  constructor(private router: Router, private http: Http, private databaseService: DatabaseService) {
     // Listening for the authenticated event
     this.lock.on("authenticated", (authResult: any) => {
       // Use the token in authResult to getUserInfo() and save it to localStorage
       this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
         if (error) return;
         // Query database to verify or setup user
-        this.http.get(this.DATABASE_URL +'users?email=' + profile.email)
+        this.http.get(this.databaseService.DATABASE_URL +'users?email=' + profile.email)
           .toPromise()
           .then(results => {
             const user = results.json();
             if (!user) {
-              console.log('No user found!');
-              this.http.post('users', profile)
+              console.log('No user found! Creating user...');
+              this.http.post(this.databaseService.DATABASE_URL + 'users', profile)
                 .toPromise()
                 .then(results => {
                   const newUser = results.json();
@@ -56,17 +47,24 @@ export class AuthService {
             } else {
               console.log('User found!');
               profile.user_id = user.id;
+              profile.score = user.score;
             }
-            console.log('Profile:', profile);
-            localStorage.setItem('id_token', authResult.idToken);
-            localStorage.setItem('access_token', authResult.accessToken);
-            localStorage.setItem('profile', JSON.stringify(profile));
+            console.log('Profile', profile);
+            this.setSession(authResult, profile);
             this.onLoggedIn.emit(profile);
             this.router.navigate(['/challenges']);
           });
       });
     });
 
+  }
+
+  //  Set local storage tokens/profile
+  setSession(authResult, profile) {
+    console.log('Setting session...');
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
   }
 
   //  Login

@@ -1,0 +1,49 @@
+<h1>My Current Challenges</h1>
+<hr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-xs-3" (click)="sortType = 'name'; sortReverse = !sortReverse">
+          Name
+          <span class="fa" 
+            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
+            *ngIf="sortType === 'name'"
+            aria-hidden="true"></span>
+      </th>
+      <th class="col-xs-5" (click)="sortType = 'desc'; sortReverse = !sortReverse">
+          Description
+          <span class="fa" 
+            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
+            *ngIf="sortType === 'desc'"
+            aria-hidden="true"></span>
+      </th>
+      <th class="col-xs-1" (click)="sortType = 'points'; sortReverse = !sortReverse">
+          Points
+          <span class="fa" 
+            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
+            *ngIf="sortType === 'points'"
+            aria-hidden="true"></span>
+      </th>
+      <th class="col-xs-1" (click)="sortType = 'expires'; sortReverse = !sortReverse">
+          Expires
+          <span class="fa" 
+            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
+            *ngIf="sortType === 'expires'"
+            aria-hidden="true"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of personalChallenges | orderBy:sortType:sortReverse">
+      <td>
+        <a routerLink="/challenges/{{c.id}}">{{ c.name }}</a>
+        <span 
+          class="badge" 
+          [ngClass]="{ 'status-complete': c.status === 'completed', 'status-pending': c.status === 'pending', 'status-failed': c.status === 'failed' }">{{ c.status }}</span>
+      </td>
+      <td>{{ c.description }}</td>
+      <td>{{ c.points }}</td>
+      <td>{{ c.expires_at | date}}</td>
+    </tr>
+  </tbody>
+</table>

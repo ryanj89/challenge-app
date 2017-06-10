@@ -24,7 +24,7 @@
       </ng-template>
 
       <ng-template [ngIf]="authService.isAuthenticated()">
-        <li><a class="welcome-user">Welcome, {{ profile?.given_name }}!</a></li>
+        <li><a class="welcome-user">Welcome {{ profile?.given_name }}!</a></li>
         <li>
           <a 
             style="cursor: pointer;" 

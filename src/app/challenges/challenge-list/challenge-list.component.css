@@ -1,3 +1,53 @@
+.challenge--button {
+  background-color: rgb(103, 114, 229);
+  border-color: rgb(88, 98, 201);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+.challenge--button:hover {
+  box-shadow: 0 7px 14px rgba(50,50,93,.2), 0 3px 6px rgba(0,0,0,.08);
+  transform: translateY(-1px);
+}
+
+.challenge-item {
+  box-shadow: 0 7px 14px rgba(50,50,93,.2), 0 3px 6px rgba(0,0,0,.08);
+}
+
+.challenge-item a {
+  color: rgb(88, 98, 201);
+}
+
+.challenge-item--creator {
+  display: flex;
+}
+.challenge-item--creator-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  margin-right: 8px;
+}
+.challenge-item--creation-date {
+  font-style: italic;
+}
+
+.challenge-item--media {
+  margin: 0 auto;
+  max-height: 200px;
+}
+
+.panel-heading {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-title {
+  font-size: 20px;
+}
 .panel-body {
   min-height: 100px;
+  padding: 22px;
+}
+.panel-footer {
+  background-color: #efefef;
 }

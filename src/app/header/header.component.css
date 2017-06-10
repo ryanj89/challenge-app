@@ -1,14 +1,14 @@
 .main-navbar {
-  /*background-color: rgba(5, 178, 132, 0.85);*/
-  background-color: rgba(13, 43, 62, 0.85);
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: rgba(13, 43, 62, 1);
+  box-shadow: 0 7px 14px rgba(50,50,93,.11), 0 3px 6px rgba(0,0,0,.08);
 }
 .main-navbar a {
   color: #fff;
 }
 .main-navbar a:hover {
-  /*background-color: rgba(5, 178, 132, 1);*/
   background-color: rgba(13, 43, 62, 1);
-
 }
 .sidebar {
   height: 506px;

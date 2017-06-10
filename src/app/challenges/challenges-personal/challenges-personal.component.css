@@ -1,0 +1,17 @@
+th, a {
+  color: rgb(88, 98, 201);
+}
+th:hover {
+  cursor: pointer;
+}
+.status-complete {
+  background-color: green;
+}
+
+.status-pending {
+  background-color: orange;
+}
+
+.status-failed {
+  background-color: red;
+}

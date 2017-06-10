@@ -21,18 +21,45 @@ export class DatabaseService {
     }
   }
 
+  getUserInfo() {
+    console.log('Getting user info...')
+    return this.authHttp.get(this.DATABASE_URL + 'me')
+      .map((response: Response) => {
+        const userInfo = response.json();
+        return userInfo;
+      })
+      .subscribe(
+        (userInfo: any) => console.log(userInfo),
+        (err) => console.log(err.message || err)
+      );
+  }
+
   //  Get all public challenges
   getPublicChallenges() {
-    // if (localStorage.getItem('access_token')) {
-      return this.authHttp.get(this.DATABASE_URL + 'challenges')
-        .map((response: Response) => {
-          const challenges: Challenge[] = response.json();
-          return challenges;
-        })
-        .subscribe(
-          (challenges: Challenge[]) => this.challengeService.setChallenges(challenges),
-          (err) => console.log(err.message || err));
-    // }
+    console.log('Getting public challenges...')
+    return this.http.get(this.DATABASE_URL + 'challenges')
+      .map((response: Response) => {
+        const challenges: Challenge[] = response.json();
+        console.log(challenges);
+        return challenges;
+      })
+      .subscribe(
+        (challenges: Challenge[]) => this.challengeService.setChallenges(challenges),
+        (err) => console.log(err.message || err));
+  }
+
+  getPersonalChallenges() {
+    console.log('Getting personal challenges...')
+    return this.authHttp.get(this.DATABASE_URL + 'me/challenges')
+      .map((response: Response) => {
+        const myChallenges: Challenge[] = response.json();
+        console.log(myChallenges);
+        console.log(myChallenges[0]);
+        return myChallenges;
+      })
+      .subscribe(
+        (myChallenges: Challenge[]) => this.challengeService.setPersonalChallenges(myChallenges),
+        (err) => console.log(err.message || err));
   }
 
   createChallenge(challenge: Challenge) {
@@ -48,7 +75,7 @@ export class DatabaseService {
 
   //  Get Available Private Challenges
   // getPrivateChallenges() {
-  //   this.authHttp.get(this.PRIVATE_CHALLENGES_URL)
+  //   this.authHttp.get(this.DATABASE_URL + 'me/challenges')
   //     .subscribe(
   //       (data) => this.challenges = data.json(),
   //       (err) => console.log(err),

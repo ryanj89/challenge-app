@@ -1,3 +1,4 @@
+import { AuthService } from '../../auth/auth.service';
 import { DatabaseService } from '../../shared/database.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
@@ -15,7 +16,7 @@ export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];
   challengeSubscription: Subscription;
 
-  constructor(private challengeService: ChallengeService, private databaseService: DatabaseService) {
+  constructor(private challengeService: ChallengeService, private databaseService: DatabaseService, private authService: AuthService) {
     databaseService.getPublicChallenges()
   }
 

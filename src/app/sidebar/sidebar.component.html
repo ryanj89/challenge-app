@@ -1,18 +1,23 @@
 <div class="row">
-  <div class="col-xs-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="profile-heading">
-          <img class="profile-picture img-responsive" [src]="profile?.picture" alt="Profile Picture">
-          <div class="user-info">
-            <h5>{{ profile?.name }}</h5>
-            <p>Score: 9999</p>
-          </div>
+  <!--<div class="col-xs-12">-->
+    <div class="panel panel-default sidenav">
+      <div class="panel-heading sidenav-profile--heading">
+          <a 
+            routerLink="/profile" 
+            class="sidenav-profile--user-info">
+            <img class="sidenav-profile--picture img-responsive" [src]="profile?.picture" alt="Profile Picture">
+            <h4 class="user-info--name">{{ profile?.name }}</h4>
+          </a>
+          <p class="score">Score: {{ profile.score }}</p>
+      </div>
+        <div class="list-group sidenav-navlist">
+          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/my-challenges">My Challenges</a>
+          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/challenges">All Challenges</a>
+          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Categories</a>
+          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Groups</a>
+          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Messages</a>
+          <a class="list-group-item sidenav-navlist--item" (click)="authService.logout()">Logout</a>
         </div>
-      </div>
-      <div class="panel-body">
-        
-      </div>
     </div>
-  </div>
+  <!--</div>-->
 </div>

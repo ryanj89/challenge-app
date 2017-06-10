@@ -9,7 +9,9 @@ import { Challenge } from "app/challenges/challenge.model";
 export class ChallengeService {
 
   private challenges: Challenge[] = [];
+  private personalChallenges: Challenge[] = [];
   challengesChanged = new Subject<Challenge[]>();
+  personalChallengesChanged = new Subject<Challenge[]>();
 
   categories: string[] = [
     'music',
@@ -27,8 +29,17 @@ export class ChallengeService {
     this.challengesChanged.next(this.challenges.slice());
   }
 
+  setPersonalChallenges(challenges: Challenge[]) {
+    this.personalChallenges = challenges;
+    this.personalChallengesChanged.next(this.personalChallenges.slice());
+  }
+
   getChallenges() {
     return this.challenges.slice();
+  }
+
+  getPersonalChallenges() {
+    return this.personalChallenges.slice();
   }
 
   addChallenge(challenge: Challenge) {

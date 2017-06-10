@@ -7,6 +7,8 @@ import { HomeComponent } from "./home/home.component";
 import { ChallengesComponent } from './challenges/challenges.component';
 import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.component';
 import { ChallengeListComponent } from './challenges/challenge-list/challenge-list.component';
+import { ChallengesPersonalComponent } from './challenges/challenges-personal/challenges-personal.component';
+import { ProfileComponent } from './profile/profile.component';
 
 // `Routes
 const appRoutes : Routes = [
@@ -16,7 +18,8 @@ const appRoutes : Routes = [
       { path: 'new', component: ChallengeNewComponent },
     ]
   },
-  // { path: 'dashboard', component: ChallengesPrivateComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'my-challenges', component: ChallengesPersonalComponent, canActivate: [AuthGuard] },
   { path: 'callback', component: CallbackComponent }
 ];
 
