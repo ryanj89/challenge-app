@@ -15,10 +15,9 @@
         <div class="panel-heading">
           <div class="challenge-item--header">
             <p class="panel-title">
-              <a routerLink="{{challenge.id}}">{{ challenge.name }}</a>
+              <a routerLink="{{challenge.id}}">{{ challenge.name }} ({{challenge.score}})</a>
             </p>
           </div>
-          <span>points: {{ challenge.points }}</span>
         </div>
         <img [src]="challenge.video_url" class="img-responsive challenge-item--media" alt="Challenge Image">
         <div class="panel-body">

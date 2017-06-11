@@ -46,8 +46,10 @@ export class AuthService {
                 });
             } else {
               console.log('User found!');
+              console.log('User', user);
               profile.user_id = user.id;
-              profile.score = user.score;
+              profile.challenger_score = user.challenger_score;
+              profile.submission_score = user.submission_score;
             }
             console.log('Profile', profile);
             this.setSession(authResult, profile);

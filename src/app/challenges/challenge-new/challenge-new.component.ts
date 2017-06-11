@@ -67,7 +67,6 @@ export class ChallengeNewComponent implements OnInit {
         this.profile.user_id, 
         video_url, 
         value.category, 
-        value.points, 
         value.expires_at,
         value.private);
       //  POST to database
