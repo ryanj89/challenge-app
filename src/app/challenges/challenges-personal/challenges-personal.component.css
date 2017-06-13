@@ -15,3 +15,6 @@ th:hover {
 .status-failed {
   background-color: red;
 }
+.score {
+  text-align: center;
+}

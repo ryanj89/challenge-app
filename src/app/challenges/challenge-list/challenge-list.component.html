@@ -15,7 +15,7 @@
         <div class="panel-heading">
           <div class="challenge-item--header">
             <p class="panel-title">
-              <a routerLink="{{challenge.id}}">{{ challenge.name }} ({{challenge.score}})</a>
+              <a routerLink="{{challenge.id}}">{{ challenge.name }}</a>
             </p>
           </div>
         </div>
@@ -31,13 +31,13 @@
               <p class="challenge-item--creation-date">{{ challenge.created_at | date }}</p>
             </div>
           </div>
-          <br>
+          <hr>
           <p>{{ challenge.description }}</p>
-          <ul>
+          <!--<ul>
             <li>categories: {{ challenge.category }}</li>
             <li>private?: {{ challenge.private }}</li>
             <li>expires: {{ challenge.expires_at | date }}</li>
-          </ul>
+          </ul>-->
         </div>
         <div class="panel-footer">
           <p># Competitors</p>

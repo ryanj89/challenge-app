@@ -114,7 +114,6 @@ export class DatabaseService {
   }
 
   getChatMessages(id) {
-    console.log('hello');
     return this.http.get(this.DATABASE_URL + 'challenges/' + id + '/messages').map(res => res.json());
   }
 

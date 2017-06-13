@@ -42,7 +42,7 @@
           [ngClass]="{ 'status-complete': c.status === 'completed', 'status-pending': c.status === 'pending', 'status-failed': c.status === 'failed' }">{{ c.status }}</span>
       </td>
       <td>{{ c.description }}</td>
-      <td>{{ c.points }}</td>
+      <td class="score">{{ c.score }}</td>
       <td>{{ c.expires_at | date}}</td>
     </tr>
   </tbody>

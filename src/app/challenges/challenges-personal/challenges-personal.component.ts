@@ -24,6 +24,7 @@ export class ChallengesPersonalComponent implements OnInit {
     this.personalChallengeSubscription = this.challengeService.personalChallengesChanged
       .subscribe((challenges: Challenge[]) => {
         this.personalChallenges = challenges;
+        console.log(this.personalChallenges);
       });
     this.personalChallenges = this.challengeService.getPersonalChallenges();
   }

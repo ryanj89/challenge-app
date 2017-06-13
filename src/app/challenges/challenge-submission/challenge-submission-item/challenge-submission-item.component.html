@@ -2,7 +2,7 @@
 <div *ngFor="let s of submissions; let i = index">
   <div class="row submission--user-submission">
     <div class="col-md-2 submission--vote-section">
-      <span (click)="vote(i)" class="glyphicon glyphicon-arrow-up submission--vote-icon"></span>
+      <span (click)="vote(s.u_id)" class="glyphicon glyphicon-arrow-up submission--vote-icon"></span>
       <p class="submission--score">{{ s.score }}</p>
     </div>
     <div class="col-md-5">

@@ -4,11 +4,11 @@
       <a class="navbar-brand" routerLink="/">Challenge Accepted</a>
     </div>
 
-    <ul class="nav navbar-nav">
+    <!--<ul class="nav navbar-nav">
       <li routerLinkActive="active">
         <a routerLink="/challenges">Challenges</a>
       </li>
-    </ul>
+    </ul>-->
     <ul class="nav navbar-nav navbar-right">
       <ng-template [ngIf]="!authService.isAuthenticated()">
         <li>
@@ -22,7 +22,7 @@
             (click)="authService.login()">Login</a>
         </li>
       </ng-template>
-
+<!--
       <ng-template [ngIf]="authService.isAuthenticated()">
         <li><a class="welcome-user">Welcome {{ profile?.given_name }}!</a></li>
         <li>
@@ -30,7 +30,7 @@
             style="cursor: pointer;" 
             (click)="authService.logout()">Logout</a>
         </li>
-      </ng-template>
+      </ng-template>-->
     </ul>
   </div>
 </nav>
