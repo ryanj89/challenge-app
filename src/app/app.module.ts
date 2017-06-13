@@ -35,6 +35,7 @@ import { ChatService } from './shared/chat.service';
 import { UserService } from './shared/user.service';
 import { ChatComponent } from './chat/chat.component';
 import { ChallengeSubmissionComponent } from './challenges/challenge-submission/challenge-submission.component';
+import { SubmissionsNewComponent } from './challenges/submissions-new/submissions-new.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ChallengeSubmissionComponent } from './challenges/challenge-submission/
     OrderByPipe,
     ChallengeDetailComponent,
     ChatComponent,
-    ChallengeSubmissionComponent
+    ChallengeSubmissionComponent,
+    SubmissionsNewComponent
   ],
   imports: [
     BrowserModule,

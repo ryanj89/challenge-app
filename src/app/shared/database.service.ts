@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { ChatService } from './chat.service';
 import { Injectable } from '@angular/core';
@@ -15,7 +16,7 @@ export class DatabaseService {
   DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
   DATABASE_URL: string;
 
-  constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService, private chatService: ChatService) {
+  constructor(private router: Router, private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService, private chatService: ChatService) {
     if (window.location.hostname === 'localhost') {
       this.DATABASE_URL = this.DATABASE_URL_DEVELOPMENT;
     } else {
@@ -68,28 +69,25 @@ export class DatabaseService {
       .subscribe(
         (challenge: Challenge) => this.challengeService.addChallenge(challenge));
   }
-  //  Get single challenge
-  //  Get users competing in challenge
-  //  Get submissions to challenge
+
+  createSubmission(submission) {
+    return this.http.post(this.DATABASE_URL + 'submissions', submission)
+      .map(response => response.json());
+  }
 
   getChallenge(id) {
+    //  Get single challenge
     let challenge = this.http.get(this.DATABASE_URL + 'challenges/' + id).map(res => res.json());
+    //  Get users competing in challenge
     let challengeUsers = this.http.get(this.DATABASE_URL + 'users_challenges?challenge=' + id).map(res => res.json());
+    //  Get submissions to challenge
     let submissions = this.http.get(this.DATABASE_URL + 'submissions?challenge=' + id).map(res => res.json());
     return Observable.forkJoin([challenge, challengeUsers, submissions])
       .subscribe(results => {
         results[0].challengers = results[1];
         results[0].submissions = results[2];
         return this.challengeService.setSelectedChallenge(results[0]);
-      })
-    // return this.http.get(this.DATABASE_URL + 'challenges/' + id)
-    //   .map((response: Response) => {
-    //     const challenge: Challenge = response.json();
-    //     console.log('Challenge', challenge);
-    //     return challenge;
-    //   })
-    //   .subscribe(
-    //     (challenge: Challenge) => this.challengeService.setSelectedChallenge(challenge));
+      });
   }
 
   getChallengeUsers(id) {
@@ -115,6 +113,7 @@ export class DatabaseService {
   joinChallenge(id) {
     return this.http.post(this.DATABASE_URL + 'users_challenges', { u_id: localStorage.getItem('userId'), c_id: id });
   }
+
   //  Get Available Private Challenges
   // getPrivateChallenges() {
   //   this.authHttp.get(this.DATABASE_URL + 'me/challenges')

@@ -17,6 +17,7 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
   submissions: any[];
   isCompeting: boolean = false;
   hasSubmited: boolean = false;
+  isSubmitting: boolean = false;
 
   constructor(private route: ActivatedRoute, private challengeService: ChallengeService, private databaseService: DatabaseService) {
     route.params.subscribe((params: Params) => {
@@ -34,7 +35,6 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
         this.challenge = challenge;
         this.challengers = challenge.challengers;
         this.submissions = challenge.submissions;
-        console.log(this.submissions);
         //  Check to see if the users has already joined this challenge
         const hasJoined = this.challengers.filter(c => c.u_id == localStorage.getItem('userId'));
         if (hasJoined.length !== 0) {
@@ -47,6 +47,8 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
             this.hasSubmited = true;
           }
         }
+        console.log(this.hasSubmited);
+        console.log(this.isCompeting);
       })
     this.challenge = this.challengeService.getChallenge();
   }
