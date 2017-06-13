@@ -1,6 +1,8 @@
 export class Challenge {
   public id: number;
   public name: string;
+  public challengers: any[];
+  public submissions: any[];
   public description: string;
   public created_at: Date;
   public updated_at: Date;

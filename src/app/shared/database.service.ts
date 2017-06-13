@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Rx';
+import { ChatService } from './chat.service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { map } from 'rxjs/operator/map';
@@ -13,7 +15,7 @@ export class DatabaseService {
   DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
   DATABASE_URL: string;
 
-  constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService) {
+  constructor(private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService, private chatService: ChatService) {
     if (window.location.hostname === 'localhost') {
       this.DATABASE_URL = this.DATABASE_URL_DEVELOPMENT;
     } else {
@@ -22,7 +24,6 @@ export class DatabaseService {
   }
 
   getUserInfo() {
-    console.log('Getting user info...')
     return this.authHttp.get(this.DATABASE_URL + 'me')
       .map((response: Response) => {
         const userInfo = response.json();
@@ -36,11 +37,9 @@ export class DatabaseService {
 
   //  Get all public challenges
   getPublicChallenges() {
-    console.log('Getting public challenges...')
     return this.http.get(this.DATABASE_URL + 'challenges')
       .map((response: Response) => {
         const challenges: Challenge[] = response.json();
-        console.log(challenges);
         return challenges;
       })
       .subscribe(
@@ -49,12 +48,10 @@ export class DatabaseService {
   }
 
   getPersonalChallenges() {
-    console.log('Getting personal challenges...')
     return this.authHttp.get(this.DATABASE_URL + 'me/challenges')
       .map((response: Response) => {
         const myChallenges: Challenge[] = response.json();
         console.log(myChallenges);
-        console.log(myChallenges[0]);
         return myChallenges;
       })
       .subscribe(
@@ -66,13 +63,58 @@ export class DatabaseService {
     return this.authHttp.post(this.DATABASE_URL + 'challenges', challenge)
       .map((response: Response) => {
         const challenge: Challenge = response.json();
-        console.log(challenge);
         return challenge;
       })
       .subscribe(
         (challenge: Challenge) => this.challengeService.addChallenge(challenge));
   }
+  //  Get single challenge
+  //  Get users competing in challenge
+  //  Get submissions to challenge
 
+  getChallenge(id) {
+    let challenge = this.http.get(this.DATABASE_URL + 'challenges/' + id).map(res => res.json());
+    let challengeUsers = this.http.get(this.DATABASE_URL + 'users_challenges?challenge=' + id).map(res => res.json());
+    let submissions = this.http.get(this.DATABASE_URL + 'submissions?challenge=' + id).map(res => res.json());
+    return Observable.forkJoin([challenge, challengeUsers, submissions])
+      .subscribe(results => {
+        results[0].challengers = results[1];
+        results[0].submissions = results[2];
+        return this.challengeService.setSelectedChallenge(results[0]);
+      })
+    // return this.http.get(this.DATABASE_URL + 'challenges/' + id)
+    //   .map((response: Response) => {
+    //     const challenge: Challenge = response.json();
+    //     console.log('Challenge', challenge);
+    //     return challenge;
+    //   })
+    //   .subscribe(
+    //     (challenge: Challenge) => this.challengeService.setSelectedChallenge(challenge));
+  }
+
+  getChallengeUsers(id) {
+    return this.http.get(this.DATABASE_URL + 'challenges/' + id + '/users')
+      .map((response: Response) => {
+        const users = response.json();
+        return users;
+      })
+      .subscribe(
+        (users) => this.challengeService.setChallengeUsers(users));
+  }
+
+  getSubmissions(id) {
+    return this.http.get(this.DATABASE_URL + 'challenges/' + id + '/submissions')
+      .map((response: Response) => {
+        const submissions = response.json();
+        return submissions;
+      })
+      .subscribe(
+        (submissions) => this.challengeService.setSubmissions(submissions));
+  }
+
+  joinChallenge(id) {
+    return this.http.post(this.DATABASE_URL + 'users_challenges', { u_id: localStorage.getItem('userId'), c_id: id });
+  }
   //  Get Available Private Challenges
   // getPrivateChallenges() {
   //   this.authHttp.get(this.DATABASE_URL + 'me/challenges')

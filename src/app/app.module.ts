@@ -25,11 +25,16 @@ import { ChallengeListComponent } from './challenges/challenge-list/challenge-li
 import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChallengesPersonalComponent } from './challenges/challenges-personal/challenges-personal.component';
+import { ChallengeDetailComponent } from './challenges/challenge-detail/challenge-detail.component';
 //  Services
 import { DatabaseService } from './shared/database.service';
 import { ChallengeService } from './challenges/challenge.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from "./auth/auth-guard.service";
+import { ChatService } from './shared/chat.service';
+import { UserService } from './shared/user.service';
+import { ChatComponent } from './chat/chat.component';
+import { ChallengeSubmissionComponent } from './challenges/challenge-submission/challenge-submission.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,10 @@ import { AuthGuard } from "./auth/auth-guard.service";
     ChallengeNewComponent,
     ProfileComponent,
     ChallengesPersonalComponent,
-    OrderByPipe
+    OrderByPipe,
+    ChallengeDetailComponent,
+    ChatComponent,
+    ChallengeSubmissionComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +67,10 @@ import { AuthGuard } from "./auth/auth-guard.service";
   ],
   providers: [
     ChallengeService, 
-    DatabaseService, 
+    DatabaseService,
+    ChatService, 
     AuthService, 
+    UserService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

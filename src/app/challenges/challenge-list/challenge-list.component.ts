@@ -16,8 +16,9 @@ export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];
   challengeSubscription: Subscription;
 
-  constructor(private challengeService: ChallengeService, private databaseService: DatabaseService, public authService: AuthService) {
+  constructor(public challengeService: ChallengeService, private databaseService: DatabaseService, public authService: AuthService) {
     databaseService.getPublicChallenges()
+    databaseService.getPersonalChallenges()
   }
 
   ngOnInit() {

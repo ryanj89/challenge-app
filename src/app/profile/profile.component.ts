@@ -1,3 +1,4 @@
+import { ChatService } from '../shared/chat.service';
 import { DatabaseService } from '../shared/database.service';
 import { Component, OnInit } from '@angular/core';
 

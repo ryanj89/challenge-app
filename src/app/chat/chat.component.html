@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" [ngClass]="{ 'active': chatActive }"><a (click)="chatActive = true">Chat</a></li>
+      <li role="presentation" [ngClass]="{ 'active': !chatActive }"><a (click)="chatActive = false">Submissions</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row chat-section">
+  <div class="col-md-3 chat-section--challengers-list">
+    <div class="list-group">
+      <li *ngFor="let challenger of challengers"
+        class="list-group-item chat-section--challenger">
+          <span [ngClass]="{ 'online' : chatService.activeChat.currentUsers.includes((challenger.id).toString()), 'offline' : !chatService.activeChat.currentUsers.includes((challenger.id).toString()) }" class="circle"></span> <a routerLink="/users/{{challenger.id}}">{{ challenger.name }}</a>
+      </li>
+    </div>
+  </div>
+
+
+  <div class="col-md-9">
+    <div class="chat-section--chat-area" *ngIf="chatActive">
+
+      <div class="msg-list">
+        <p *ngFor="let msg of chatService.activeChat.msgs">
+          <b>{{msg.user}}</b>: {{msg.msg}}
+        </p>
+      </div>
+
+      <div class="row chat-section--chat-input">
+        <div class="col-xs-10 chat-section--chat-box">
+          <input (keyup.enter)="send()" class="form-control" type="text" [(ngModel)]="currentMsg">
+        </div>
+        <div class="col-xs-2 chat-section--submit-button">
+          <button (click)="send()" class="btn btn-success" type="button">Send</button>
+        </div>
+      </div>
+
+    </div>
+
+    <app-challenge-submission *ngIf="!chatActive"></app-challenge-submission>
+    
+  </div>
+</div>

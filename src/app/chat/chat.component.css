@@ -1,0 +1,43 @@
+.nav-tabs > li:hover {
+  cursor: pointer;
+}
+.chat-section {
+  background-color: #465765;
+  height: 320px;
+}
+.chat-section--challengers-list {
+  padding: 0;
+  background-color: rgba(13, 43, 62, .96);
+  height: 100%;
+  border-right: 1px solid #465765;
+}
+
+.chat-section--challenger {
+  color: #fcfcfc;
+  background-color: rgba(13, 43, 62, .96);
+  border-radius: 0;
+  border: none;
+}
+
+.msg-list {
+  height: 280px;
+}
+.chat-section--chat-input {
+  padding: 3px 0 2px 0;
+  height: 40px;
+  background-color: rgba(13, 43, 62, .96);
+}
+.chat-section--chat-box,
+.chat-section--submit-button {
+  padding: 0 3px;
+}
+.circle:before {
+  content: '\25CF';
+  font-size: 18px;
+}
+.online {
+  color: green;
+}
+.offline {
+  color: gray;
+}

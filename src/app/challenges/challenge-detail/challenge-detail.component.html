@@ -1,0 +1,43 @@
+<div class="row" *ngIf="challenge">
+  <div class="col-xs-12">
+    <button *ngIf="!isCompeting" (click)="joinChallenge(challenge.id)" class="btn btn-primary challenge--button" type="button">Join!</button>
+    <button *ngIf="!hasSubmitted && isCompeting" class="btn btn-primary challenge--button" type="button">Submit</button>
+    <section class="challenge-detail--challenge-info">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <h2>{{ challenge.name }}</h2>
+          <div class="challenge-detail--creator">
+            <img 
+              src="{{challenge.user_picture}}" 
+              class="img-responsive challenge-detail--creator-image" 
+              alt="User Image">
+            <div class="challenge-detail--creator-info">
+              <a routerLink="/users/{{challenge.creator_id}}">{{ challenge.creator }}</a>
+              <p class="challenge-detail--creation-date">{{ challenge.created_at | date }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="challenge-detail--challenge-details">
+            <p>{{ challenge.description }}
+            </p>
+            <p>Categories: {{ challenge.category }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6 challenge-detail--main-info">
+          <img class="challenge-detail--media" src="{{challenge.video_url}}" alt="Challenge Preview">
+        </div>
+      </div>
+    </section>
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12">
+        
+        <app-chat></app-chat>
+
+      </div>
+    </div>
+
+  </div>
+</div>

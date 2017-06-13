@@ -8,6 +8,7 @@ import { ChallengesComponent } from './challenges/challenges.component';
 import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.component';
 import { ChallengeListComponent } from './challenges/challenge-list/challenge-list.component';
 import { ChallengesPersonalComponent } from './challenges/challenges-personal/challenges-personal.component';
+import { ChallengeDetailComponent } from './challenges/challenge-detail/challenge-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 
 // `Routes
@@ -16,6 +17,7 @@ const appRoutes : Routes = [
   { path: 'challenges', component: ChallengesComponent, children: [
       { path: '', component: ChallengeListComponent },
       { path: 'new', component: ChallengeNewComponent },
+      { path: ':id', component: ChallengeDetailComponent },
     ]
   },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },

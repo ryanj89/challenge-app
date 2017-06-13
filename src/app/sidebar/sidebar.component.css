@@ -18,12 +18,6 @@
   max-height: 80px;
 }
 
-.sidenav-profile--heading {
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*justify-content: space-around;*/
-}
-
 .sidenav-profile--user-info {
   text-align: center;
   text-decoration: none;
@@ -34,7 +28,7 @@
 .sidenav-profile--user-score {
   text-align: center;
 }
-.score {}
+
 .sidenav-profile--user-info:hover {
   color: rgba(103, 114, 229, .92);
 }

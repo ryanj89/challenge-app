@@ -1,4 +1,5 @@
 import { DatabaseService } from '../shared/database.service';
+import { UserService } from '../shared/user.service';
 import { Http } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,7 +24,7 @@ export class AuthService {
   lock = new Auth0Lock(AUTH_CONFIG.CLIENT_ID, AUTH_CONFIG.CLIENT_DOMAIN, this.lockOptions);
   onLoggedIn: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private router: Router, private http: Http, private databaseService: DatabaseService) {
+  constructor(private router: Router, private http: Http, private databaseService: DatabaseService, private userService: UserService) {
     // Listening for the authenticated event
     this.lock.on("authenticated", (authResult: any) => {
       // Use the token in authResult to getUserInfo() and save it to localStorage
@@ -35,17 +36,16 @@ export class AuthService {
           .then(results => {
             const user = results.json();
             if (!user) {
-              console.log('No user found! Creating user...');
               this.http.post(this.databaseService.DATABASE_URL + 'users', profile)
                 .toPromise()
                 .then(results => {
                   const newUser = results.json();
                   profile.user_id = newUser[0].id;
+                  this.setSession(authResult, profile);
                   this.onLoggedIn.emit(profile);
                   this.router.navigate(['/challenges']);
                 });
             } else {
-              console.log('User found!');
               console.log('User', user);
               profile.user_id = user.id;
               profile.challenger_score = user.challenger_score;
@@ -64,6 +64,7 @@ export class AuthService {
   //  Set local storage tokens/profile
   setSession(authResult, profile) {
     console.log('Setting session...');
+    localStorage.setItem('userId', profile.user_id);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
