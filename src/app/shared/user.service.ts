@@ -7,6 +7,5 @@ export class UserService {
 
   setProfile(profile) {
     this.profile = profile;
-    localStorage.setItem('userId', profile.id);
   }
 }

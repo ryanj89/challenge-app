@@ -10,6 +10,7 @@ import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
   styleUrls: ['./submissions-new.component.css']
 })
 export class SubmissionsNewComponent implements OnInit {
+  userId: string;
   isUploading: boolean = false;
   uploadProgress: number = 0;
   //  File uploader
@@ -17,6 +18,7 @@ export class SubmissionsNewComponent implements OnInit {
     new CloudinaryOptions({ cloudName: 'ryanj89', uploadPreset: 'unvn5lqv'})
   );
   constructor(private router: Router, private route: ActivatedRoute, private databaseService: DatabaseService) {
+    this.userId = JSON.parse(localStorage.getItem('profile')).user_id;
     this.uploader.onProgressAll = (progress: any) => {
       // this.ref.detectChanges();
       this.uploadProgress = progress;
@@ -32,11 +34,10 @@ export class SubmissionsNewComponent implements OnInit {
     this.uploader.uploadAll();
     //  When upload successful...
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
-      console.log('Upload Success! POST to database...');
       const submission_url = JSON.parse(response).secure_url;
       const value = form.value;
       const newSubmission =  {
-        u_id: localStorage.getItem('userId'),
+        u_id: this.userId,
         c_id: this.route.snapshot.params.id,
         submission: submission_url,
         details: form.value.details

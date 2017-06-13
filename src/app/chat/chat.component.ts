@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 import { ChatService } from '../shared/chat.service';
 import { ChallengeService } from '../challenges/challenge.service';
 import { DatabaseService } from '../shared/database.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,7 +13,7 @@ import { DatabaseService } from '../shared/database.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  userId: string;
+  profile: any;
   chatActive = true;
   currentMsg = '';
   challengers = [];
@@ -22,10 +23,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, 
     private databaseService: DatabaseService, 
     private challengeService: ChallengeService,
-    public chatService: ChatService) { }
+    public chatService: ChatService,
+    public userService: UserService) { }
 
   ngOnInit() {
-    this.userId = localStorage.getItem('userId');
+    this.profile = JSON.parse(localStorage.getItem('profile'));
     this.route.params.subscribe((params: Params) => {
       this.databaseService.getChallengeUsers(params['id']);
       this.chatService.joinChat(params['id']);
@@ -34,11 +36,16 @@ export class ChatComponent implements OnInit, OnDestroy {
       .subscribe((challengers: any[]) => {
         this.challengers = challengers;
       })
+
+    this.databaseService.getChatMessages(this.route.snapshot.params['id'])
+      .subscribe(messages => {
+        this.chatService.activeChat.msgs = messages;
+      });
   }
 
   send() {
     if (this.currentMsg.length) {
-      this.chatService.activeChat.send(this.currentMsg, localStorage.getItem('userId'));
+      this.chatService.activeChat.send(this.currentMsg, this.profile.user_id, this.profile.name);
       this.currentMsg = '';
     }
   }

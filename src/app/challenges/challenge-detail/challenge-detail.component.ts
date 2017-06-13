@@ -11,44 +11,44 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./challenge-detail.component.css']
 })
 export class ChallengeDetailComponent implements OnInit, OnDestroy {
+  userId: string;
+
   challenge: Challenge;
   challengeSub: Subscription;
   challengers: any[];
   submissions: any[];
+
   isCompeting: boolean = false;
   hasSubmited: boolean = false;
+  hasVoted: boolean;
   isSubmitting: boolean = false;
 
   constructor(private route: ActivatedRoute, private challengeService: ChallengeService, private databaseService: DatabaseService) {
     route.params.subscribe((params: Params) => {
-      // const findChallenge = challengeService.personalChallenges.filter(c => c.id === +params['id']);
-      // if (findChallenge.length !== 0) {
-      //   this.isCompeting = true;
-      // }
       databaseService.getChallenge(params['id'])
     });
   }
 
   ngOnInit() {
+    this.userId = JSON.parse(localStorage.getItem('profile')).user_id;
     this.challengeSub = this.challengeService.selectedChallengeChanged
       .subscribe((challenge: Challenge) => {
         this.challenge = challenge;
         this.challengers = challenge.challengers;
         this.submissions = challenge.submissions;
         //  Check to see if the users has already joined this challenge
-        const hasJoined = this.challengers.filter(c => c.u_id == localStorage.getItem('userId'));
+        const hasJoined = this.challengers.filter(c => c.u_id == this.userId);
         if (hasJoined.length !== 0) {
           this.isCompeting = true;
+          this.hasVoted = hasJoined[0].voted;
         }
         if (this.isCompeting === true) {
           //  If they ahve already joined, check to see if they have submitted an attempt
-          const hasSubmitted = this.submissions.filter(s => s.u_id == localStorage.getItem('userId'));
+          const hasSubmitted = this.submissions.filter(s => s.u_id == this.userId);
           if (hasSubmitted.length !== 0) {
             this.hasSubmited = true;
           }
         }
-        console.log(this.hasSubmited);
-        console.log(this.isCompeting);
       })
     this.challenge = this.challengeService.getChallenge();
   }

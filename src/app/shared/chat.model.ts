@@ -11,7 +11,7 @@ export class Chat {
   socket: any;
   socketConnected$ = new BehaviorSubject<boolean>(false);
 
-  room: string;
+  room: number;
   chatStream: Observable<any>;
   roomStream: Observable<any>;
   chatSub: Subscription;
@@ -19,7 +19,7 @@ export class Chat {
   msgs: any[] = [];
   currentUsers: any[] = [];
 
-  constructor(room: string, userId: string) {
+  constructor(room: number, userId: string) {
     //  Socket Config
     this.socket = io(environment.socket.baseUrl, environment.socket.opts);
     this.socket.on('connect', () => this.socketConnected$.next(true));
@@ -37,7 +37,6 @@ export class Chat {
 
     this.chatSub = this.chatStream.subscribe(response => this.msgs.push(response));
     this.roomSub = this.roomStream.subscribe(response => {
-      console.log('UPDATE', response);
       this.currentUsers = response;
     });
 
@@ -48,10 +47,10 @@ export class Chat {
   }
 
   //  Send message
-  send(msg: string, user: string) {
-    if (msg.length) {
-      this.socket.emit('send', { msg, user, room: this.room });
-      this.msgs.push({ msg, user, room: this.room });
+  send(message: string, user: string, name: string) {
+    if (message.length) {
+      this.socket.emit('send', { message, user, name, room: this.room });
+      this.msgs.push({ message, user, name, room: this.room });
     }
   }
 
@@ -65,8 +64,6 @@ export class Chat {
     return new Observable(observer => {
       //  If the event is for this chat room, do stuff
       this.socket.on(event, data => {
-        console.log(event);
-        console.log(data);
         observer.next(data);
       })
 

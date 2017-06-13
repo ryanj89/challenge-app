@@ -52,7 +52,6 @@ export class DatabaseService {
     return this.authHttp.get(this.DATABASE_URL + 'me/challenges')
       .map((response: Response) => {
         const myChallenges: Challenge[] = response.json();
-        console.log(myChallenges);
         return myChallenges;
       })
       .subscribe(
@@ -114,23 +113,9 @@ export class DatabaseService {
     return this.http.post(this.DATABASE_URL + 'users_challenges', { u_id: localStorage.getItem('userId'), c_id: id });
   }
 
-  //  Get Available Private Challenges
-  // getPrivateChallenges() {
-  //   this.authHttp.get(this.DATABASE_URL + 'me/challenges')
-  //     .subscribe(
-  //       (data) => this.challenges = data.json(),
-  //       (err) => console.log(err),
-  //       () => console.log('Request completed')
-  //     );
-  //   // return this.authHttp.get(this.PRIVATE_CHALLENGES_URL)
-  //   //   .toPromise()
-  //   //   .then((response: Response) => response.json() as Challenge[])
-  //   //   .catch(this.handleError);
-  // }
+  getChatMessages(id) {
+    console.log('hello');
+    return this.http.get(this.DATABASE_URL + 'challenges/' + id + '/messages').map(res => res.json());
+  }
+
 }
-
-
-//   storeRecipes() {
-//     const token = this.authService.getToken();
-//     return this.http.put('https://ng4-recipe-app.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
-//   }

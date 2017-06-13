@@ -36,6 +36,7 @@ import { UserService } from './shared/user.service';
 import { ChatComponent } from './chat/chat.component';
 import { ChallengeSubmissionComponent } from './challenges/challenge-submission/challenge-submission.component';
 import { SubmissionsNewComponent } from './challenges/submissions-new/submissions-new.component';
+import { ChallengeSubmissionItemComponent } from './challenges/challenge-submission/challenge-submission-item/challenge-submission-item.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SubmissionsNewComponent } from './challenges/submissions-new/submission
     ChallengeDetailComponent,
     ChatComponent,
     ChallengeSubmissionComponent,
-    SubmissionsNewComponent
+    SubmissionsNewComponent,
+    ChallengeSubmissionItemComponent
   ],
   imports: [
     BrowserModule,

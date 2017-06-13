@@ -1,0 +1,27 @@
+<h3 *ngIf="submissions.length === 0">No Submissions Yet!</h3>
+<div *ngFor="let s of submissions; let i = index">
+  <div class="row submission--user-submission">
+    <div class="col-md-2 submission--vote-section">
+      <span (click)="vote(i)" class="glyphicon glyphicon-arrow-up submission--vote-icon"></span>
+      <p class="submission--score">{{ s.score }}</p>
+    </div>
+    <div class="col-md-5">
+      <div class="submission--user">
+        <img 
+          src="{{s.picture}}" 
+          class="img-responsive submission--user-image" 
+          alt="User Image">
+        <div class="submission--user-info">
+          <a routerLink="/users/{{s.u_id}}">{{ s.name }}</a>
+          <p class="submission--creation-date">{{ s.created_at | date }}</p>
+        </div>
+      </div>
+      <hr>
+      <p>{{ s.details }}</p>
+    </div>
+    <div class="col-md-5">
+      <img src="{{s.submission}}" class="img-responsive submission--submission-image"  alt="User Submission">
+    </div>
+  </div>
+  <hr>
+</div>

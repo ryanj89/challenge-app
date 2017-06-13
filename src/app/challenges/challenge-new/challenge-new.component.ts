@@ -57,7 +57,6 @@ export class ChallengeNewComponent implements OnInit {
     this.uploader.uploadAll();
     //  When upload successful...
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
-      console.log('Upload Success! POST to database...');
       this.uploadComplete = true;
       const video_url = JSON.parse(response).secure_url;
       const value = form.value;

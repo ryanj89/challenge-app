@@ -24,7 +24,7 @@
 
       <div class="msg-list">
         <p *ngFor="let msg of chatService.activeChat.msgs">
-          <b>{{msg.user}}</b>: {{msg.msg}}
+          <b>{{msg.name}}</b>: {{msg.message}}
         </p>
       </div>
 

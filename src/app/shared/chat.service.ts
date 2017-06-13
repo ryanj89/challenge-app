@@ -22,7 +22,7 @@ export class ChatService {
     this.socket.on('disconnect', () => this.socketConnected$.next(false));
   }
 
-  joinChat(room: string): Chat {
+  joinChat(room: number): Chat {
     let chatRoom = this.getChatRoom(room);
     if (!chatRoom) {
       chatRoom = new Chat(room, this.userId);
@@ -33,7 +33,7 @@ export class ChatService {
   }
 
 
-  getChatRoom(room: string): Chat {
+  getChatRoom(room: number): Chat {
     return this.activeChats.filter(chat => chat.room === room)[0];
   }
 }

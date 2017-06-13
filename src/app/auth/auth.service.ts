@@ -46,12 +46,10 @@ export class AuthService {
                   this.router.navigate(['/challenges']);
                 });
             } else {
-              console.log('User', user);
               profile.user_id = user.id;
               profile.challenger_score = user.challenger_score;
               profile.submission_score = user.submission_score;
             }
-            console.log('Profile', profile);
             this.setSession(authResult, profile);
             this.onLoggedIn.emit(profile);
             this.router.navigate(['/challenges']);
@@ -63,11 +61,10 @@ export class AuthService {
 
   //  Set local storage tokens/profile
   setSession(authResult, profile) {
-    console.log('Setting session...');
-    localStorage.setItem('userId', profile.user_id);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
+    this.userService.setProfile(profile);
   }
 
   //  Login

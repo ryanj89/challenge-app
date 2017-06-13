@@ -22,7 +22,6 @@ export class ChallengeSubmissionComponent implements OnInit {
     this.submissionSub = this.challengeService.submissionsChanged
       .subscribe((submissions: any[]) => {
         this.submissions = submissions;
-        console.log(this.submissions);
       });
   }
 

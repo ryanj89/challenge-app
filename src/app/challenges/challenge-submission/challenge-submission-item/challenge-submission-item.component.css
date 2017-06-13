@@ -1,0 +1,34 @@
+.submission--user-submission {
+  margin-top: 10px;
+}
+.submission--user {
+  margin-top: 10px;
+  display: flex;
+}
+.submission--user-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  margin-right: 8px;
+}
+.submission--creation-date {
+  font-style: italic;
+}
+.submission--submission-image {
+  margin: 0 auto;
+  max-height: 200px;
+}
+.submission--vote-section {
+  padding-top: 10px;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submission--vote-icon {
+  cursor: pointer;
+}
+.submission--score {
+  margin-top: 5px;
+}

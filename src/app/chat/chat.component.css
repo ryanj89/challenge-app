@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .chat-section {
-  background-color: #465765;
+  /*background-color: #465765;*/
   height: 320px;
 }
 .chat-section--challengers-list {
@@ -21,6 +21,7 @@
 
 .msg-list {
   height: 280px;
+  overflow-y: scroll;
 }
 .chat-section--chat-input {
   padding: 3px 0 2px 0;
