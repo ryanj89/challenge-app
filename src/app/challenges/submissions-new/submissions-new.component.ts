@@ -1,8 +1,9 @@
-import { DatabaseService } from '../../shared/database.service';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { Cloudinary } from '@cloudinary/angular-4.x';
+import { DatabaseService } from '../../shared/database.service';
 
 @Component({
   selector: 'app-submissions-new',
@@ -14,17 +15,53 @@ export class SubmissionsNewComponent implements OnInit {
   isUploading: boolean = false;
   uploadProgress: number = 0;
   //  File uploader
-  uploader: CloudinaryUploader = new CloudinaryUploader(
-    new CloudinaryOptions({ cloudName: 'ryanj89', uploadPreset: 'unvn5lqv'})
-  );
-  constructor(private router: Router, private route: ActivatedRoute, private databaseService: DatabaseService) {
+  private uploader: FileUploader;
+
+  constructor(
+    private cloudinary: Cloudinary,
+    private zone: NgZone,
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private databaseService: DatabaseService,
+    private ref: ChangeDetectorRef
+  ) {
     this.userId = JSON.parse(localStorage.getItem('profile')).user_id;
-    this.uploader.onProgressAll = (progress: any) => {
-      this.uploadProgress = progress;
-    }
   }
 
   ngOnInit() {
+    // Create the file uploader, wire it to upload to your account
+    const uploaderOptions: FileUploaderOptions = {
+      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      // Upload files automatically upon addition to upload queue
+      autoUpload: false,
+      // Use xhrTransport in favor of iframeTransport
+      isHTML5: true,
+      // Calculate progress independently for each uploaded file
+      removeAfterUpload: true,
+      // XHR request headers
+      headers: [
+        {
+          name: 'X-Requested-With',
+          value: 'XMLHttpRequest'
+        }
+      ]
+    };
+    this.uploader = new FileUploader(uploaderOptions);
+
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      // Add Cloudinary's unsigned upload preset to the upload form
+      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      form.append('file', fileItem);
+
+      // Use default "withCredentials" value for CORS requests
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    };
+
+    this.uploader.onProgressAll = (progress: any) => {
+      this.ref.detectChanges();
+      this.uploadProgress = progress;
+    }
   }
 
   onSubmit(form: NgForm) {

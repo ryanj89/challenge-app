@@ -4,13 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //  Custom Pipes
 import { OrderByPipe } from './shared/order-by.pipe';
-//  Cloudinary File Upload
+//  File Upload Module
 import { FileUploadModule } from 'ng2-file-upload';
-import * as cloudinary from 'cloudinary-core';
-// import { CloudinaryModule } from '@cloudinary/angular-4.x';
+//  Cloudinary Module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
-import cloudinaryConfiguration from './config';
-// import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 //  Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
@@ -42,6 +39,9 @@ import { ChallengeSubmissionComponent } from './challenges/challenge-submission/
 import { SubmissionsNewComponent } from './challenges/submissions-new/submissions-new.component';
 import { ChallengeSubmissionItemComponent } from './challenges/challenge-submission/challenge-submission-item/challenge-submission-item.component';
 
+import cloudinaryConfiguration from './config';
+import * as cloudinary from 'cloudinary-core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,14 +65,10 @@ import { ChallengeSubmissionItemComponent } from './challenges/challenge-submiss
     BrowserModule,
     FormsModule,
     HttpModule,
-    // Ng2CloudinaryModule,
     CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     FileUploadModule,
     AppRoutingModule,
-    AuthModule,
-    // MaterialModule,
-    // FlexLayoutModule,
-    // BrowserAnimationsModule
+    AuthModule
   ],
   providers: [
     ChallengeService, 
