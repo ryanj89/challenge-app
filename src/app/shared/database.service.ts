@@ -1,6 +1,6 @@
+import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { ChatService } from './chat.service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { map } from 'rxjs/operator/map';
@@ -16,7 +16,7 @@ export class DatabaseService {
   DATABASE_URL_DEVELOPMENT: string = 'http://localhost:3000/api/';
   DATABASE_URL: string;
 
-  constructor(private router: Router, private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService, private chatService: ChatService) {
+  constructor(private router: Router, private http: Http, private authHttp: AuthHttp, private challengeService: ChallengeService, private userService: UserService) {
     if (window.location.hostname === 'localhost') {
       this.DATABASE_URL = this.DATABASE_URL_DEVELOPMENT;
     } else {
@@ -30,10 +30,6 @@ export class DatabaseService {
         const userInfo = response.json();
         return userInfo;
       })
-      .subscribe(
-        (userInfo: any) => console.log(userInfo),
-        (err) => console.log(err.message || err)
-      );
   }
 
   //  Get all public challenges
@@ -70,8 +66,19 @@ export class DatabaseService {
   }
 
   createSubmission(submission) {
-    return this.http.post(this.DATABASE_URL + 'submissions', submission)
+    return this.authHttp.post(this.DATABASE_URL + 'submissions', submission)
       .map(response => response.json());
+  }
+
+  addVote(submissionId, challenge) {
+    return this.authHttp.patch(this.DATABASE_URL + 'submissions/' + submissionId, {challenge, user_id: JSON.parse(localStorage.getItem('profile')).user_id})
+      .map(res => res.json());
+  }
+
+  updateVote(newVoteId, prevVoteId, challenge) {
+    let addVote = this.authHttp.patch(this.DATABASE_URL + 'submissions/' + newVoteId, { challenge, user_id: JSON.parse(localStorage.getItem('profile')).user_id }).map(res => res.json());
+    let removeVote = this.authHttp.patch(this.DATABASE_URL + 'submissions/' + prevVoteId, { challenge, prevVoteId, user_id: JSON.parse(localStorage.getItem('profile')).user_id }).map(res => res.json());
+    return Observable.forkJoin([removeVote, addVote]);
   }
 
   getChallenge(id) {
@@ -80,7 +87,7 @@ export class DatabaseService {
     //  Get users competing in challenge
     let challengeUsers = this.http.get(this.DATABASE_URL + 'users_challenges?challenge=' + id).map(res => res.json());
     //  Get submissions to challenge
-    let submissions = this.http.get(this.DATABASE_URL + 'submissions?challenge=' + id).map(res => res.json());
+    let submissions = this.authHttp.get(this.DATABASE_URL + 'submissions?challenge=' + id).map(res => res.json());
     return Observable.forkJoin([challenge, challengeUsers, submissions])
       .subscribe(results => {
         results[0].challengers = results[1];
@@ -110,7 +117,7 @@ export class DatabaseService {
   }
 
   joinChallenge(id) {
-    return this.http.post(this.DATABASE_URL + 'users_challenges', { u_id: localStorage.getItem('userId'), c_id: id });
+    return this.http.post(this.DATABASE_URL + 'users_challenges', { u_id: JSON.parse(localStorage.getItem('profile')).user_id, c_id: id });
   }
 
   getChatMessages(id) {

@@ -24,7 +24,12 @@
           </div>
         </div>
         <div class="col-xs-12 col-md-6 challenge-detail--main-info">
-          <img class="challenge-detail--media" src="{{challenge.video_url}}" alt="Challenge Preview">
+          <cl-image *ngIf="challenge.resource_type === 'image'" class="img-responsive" [public-id]="challenge.public_id" secure="true">
+            <cl-transformation width="450" height="300" crop="fit"></cl-transformation>
+          </cl-image>
+        <cl-video *ngIf="challenge.resource_type === 'video'" class="img-responsive" [public-id]="challenge.public_id" secure="true">
+
+        </cl-video>
         </div>
       </div>
     </section>

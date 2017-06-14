@@ -2,7 +2,7 @@ import { ChallengeService } from '../challenge.service';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DatabaseService } from '../../shared/database.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-challenge-submission',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./challenge-submission.component.css']
 })
 export class ChallengeSubmissionComponent implements OnInit {
+  @Input('hasVoted') hasVoted: any;
   submissions: any[] = [];
   submissionSub: Subscription;
 

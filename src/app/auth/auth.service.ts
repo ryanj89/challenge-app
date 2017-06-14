@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Auth0Lock from 'auth0-lock';
-import { tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 import { AUTH_CONFIG } from './auth0-variables';
 
@@ -24,7 +24,7 @@ export class AuthService {
   lock = new Auth0Lock(AUTH_CONFIG.CLIENT_ID, AUTH_CONFIG.CLIENT_DOMAIN, this.lockOptions);
   onLoggedIn: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private router: Router, private http: Http, private databaseService: DatabaseService, private userService: UserService) {
+  constructor(private router: Router, private http: Http,private authHttp: AuthHttp, private databaseService: DatabaseService, private userService: UserService) {
     // Listening for the authenticated event
     this.lock.on("authenticated", (authResult: any) => {
       // Use the token in authResult to getUserInfo() and save it to localStorage

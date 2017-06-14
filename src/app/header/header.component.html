@@ -1,7 +1,10 @@
 <nav class="navbar main-navbar">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/">Challenge Accepted</a>
+      <a class="navbar-brand nav-logo" routerLink="/">
+        <img src="./assets/CA-logo.png" class="logo" alt="Logo">
+        Challenge Accepted
+      </a>
     </div>
 
     <!--<ul class="nav navbar-nav">
@@ -22,7 +25,7 @@
             (click)="authService.login()">Login</a>
         </li>
       </ng-template>
-<!--
+
       <ng-template [ngIf]="authService.isAuthenticated()">
         <li><a class="welcome-user">Welcome {{ profile?.given_name }}!</a></li>
         <li>
@@ -30,7 +33,7 @@
             style="cursor: pointer;" 
             (click)="authService.logout()">Logout</a>
         </li>
-      </ng-template>-->
+      </ng-template>
     </ul>
   </div>
 </nav>

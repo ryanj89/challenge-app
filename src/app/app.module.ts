@@ -5,8 +5,12 @@ import { HttpModule } from '@angular/http';
 //  Custom Pipes
 import { OrderByPipe } from './shared/order-by.pipe';
 //  Cloudinary File Upload
-import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { FileUploadModule } from 'ng2-file-upload';
+import * as cloudinary from 'cloudinary-core';
+// import { CloudinaryModule } from '@cloudinary/angular-4.x';
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
+import cloudinaryConfiguration from './config';
+// import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 //  Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
@@ -61,7 +65,8 @@ import { ChallengeSubmissionItemComponent } from './challenges/challenge-submiss
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2CloudinaryModule,
+    // Ng2CloudinaryModule,
+    CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     FileUploadModule,
     AppRoutingModule,
     AuthModule,

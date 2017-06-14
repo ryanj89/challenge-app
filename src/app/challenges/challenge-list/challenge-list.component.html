@@ -15,11 +15,17 @@
         <div class="panel-heading">
           <div class="challenge-item--header">
             <p class="panel-title">
-              <a routerLink="{{challenge.id}}">{{ challenge.name }}</a>
+              <a routerLink="/challenges/{{challenge.id}}">{{ challenge.name }}</a>
             </p>
           </div>
         </div>
-        <img [src]="challenge.video_url" class="img-responsive challenge-item--media" alt="Challenge Image">
+        <cl-image *ngIf="challenge.resource_type === 'image'" class="img-responsive" [public-id]="challenge.public_id" secure="true">
+          <cl-transformation width="900" height="250" crop="fill"></cl-transformation>
+        </cl-image>
+        <cl-video *ngIf="challenge.resource_type === 'video'" class="img-responsive" [public-id]="challenge.public_id" secure="true">
+          <cl-transformation height="200"></cl-transformation>
+        </cl-video>
+        <!--<img [src]="challenge.video_url" class="img-responsive challenge-item--media" alt="Challenge Image">-->
         <div class="panel-body">
           <div class="challenge-item--creator">
             <img 
@@ -40,7 +46,11 @@
           </ul>-->
         </div>
         <div class="panel-footer">
-          <p># Competitors</p>
+          <p [ngPlural]="challenge.competitor_count">
+            <ng-template ngPluralCase="=0">No Competitors!</ng-template>
+            <ng-template ngPluralCase="=1">{{ challenge.competitor_count }} Competitor</ng-template>
+            <ng-template ngPluralCase="=2">{{ challenge.competitor_count }} Competitors</ng-template>
+          </p>
           <!--<button (click)="joinChallenge(challenge.id)" class="btn btn-primary challenge--button" type="button">Join!</button>-->
         </div>
       </div>

@@ -39,7 +39,7 @@
 
     </div>
 
-    <app-challenge-submission *ngIf="!chatActive"></app-challenge-submission>
+    <app-challenge-submission [hasVoted]="hasVoted" *ngIf="!chatActive"></app-challenge-submission>
     
   </div>
 </div>

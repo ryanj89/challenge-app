@@ -1,3 +1,4 @@
+import { ChatService } from '../../shared/chat.service';
 import { ChallengeService } from '../challenge.service';
 import { Subscription } from 'rxjs/Rx';
 import { DatabaseService } from '../../shared/database.service';
@@ -8,7 +9,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 @Component({
   selector: 'app-challenge-detail',
   templateUrl: './challenge-detail.component.html',
-  styleUrls: ['./challenge-detail.component.css']
+  styleUrls: ['./challenge-detail.component.css'],
+  providers: [ChatService]
 })
 export class ChallengeDetailComponent implements OnInit, OnDestroy {
   userId: string;
@@ -20,7 +22,6 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
 
   isCompeting: boolean = false;
   hasSubmited: boolean = false;
-  hasVoted: boolean;
   isSubmitting: boolean = false;
 
   constructor(private route: ActivatedRoute, private challengeService: ChallengeService, private databaseService: DatabaseService) {
@@ -36,11 +37,11 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
         this.challenge = challenge;
         this.challengers = challenge.challengers;
         this.submissions = challenge.submissions;
+        console.log(this.challengers);
         //  Check to see if the users has already joined this challenge
         const hasJoined = this.challengers.filter(c => c.u_id == this.userId);
         if (hasJoined.length !== 0) {
           this.isCompeting = true;
-          this.hasVoted = hasJoined[0].voted;
         }
         if (this.isCompeting === true) {
           //  If they ahve already joined, check to see if they have submitted an attempt

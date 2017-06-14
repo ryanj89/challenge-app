@@ -16,7 +16,9 @@ export class ChatService {
   activeChat: Chat;
 
   constructor(private userService: UserService) {
-    this.userId = localStorage.getItem('userId');
+    if (localStorage.getItem('profile')) {
+    }
+    this.userId = JSON.parse(localStorage.getItem('profile')).user_id;
     this.socket = io(environment.socket.baseUrl, environment.socket.opts);
     this.socket.on('connect', () => this.socketConnected$.next(true));
     this.socket.on('disconnect', () => this.socketConnected$.next(false));

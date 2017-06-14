@@ -32,3 +32,7 @@
 .submission--score {
   margin-top: 5px;
 }
+
+.voted {
+  color: rgb(62, 207, 142);
+}

@@ -13,3 +13,10 @@
 .sidebar {
   height: 506px;
 }
+.nav-logo {
+  padding-top: 8px;
+}
+.logo {
+  display: inline-block;
+  height: 36px;
+}

@@ -1,6 +1,6 @@
-import { ChatService } from '../shared/chat.service';
-import { DatabaseService } from '../shared/database.service';
 import { Component, OnInit } from '@angular/core';
+
+import { DatabaseService } from '../shared/database.service';
 
 @Component({
   selector: 'app-profile',

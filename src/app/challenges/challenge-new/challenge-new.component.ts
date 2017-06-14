@@ -1,3 +1,4 @@
+import { ResponseContentType } from '@angular/http';
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
@@ -57,14 +58,16 @@ export class ChallengeNewComponent implements OnInit {
     this.uploader.uploadAll();
     //  When upload successful...
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
+      console.log(response);
       this.uploadComplete = true;
-      const video_url = JSON.parse(response).secure_url;
+      const res = JSON.parse(response);
       const value = form.value;
       const newChallenge = new Challenge(
         value.name, 
         value.description, 
         this.profile.user_id, 
-        video_url, 
+        res.public_id,
+        res.resource_type, 
         value.category, 
         value.expires_at,
         value.private);

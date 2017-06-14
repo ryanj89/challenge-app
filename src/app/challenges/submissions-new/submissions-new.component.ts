@@ -20,7 +20,6 @@ export class SubmissionsNewComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private databaseService: DatabaseService) {
     this.userId = JSON.parse(localStorage.getItem('profile')).user_id;
     this.uploader.onProgressAll = (progress: any) => {
-      // this.ref.detectChanges();
       this.uploadProgress = progress;
     }
   }
@@ -34,12 +33,13 @@ export class SubmissionsNewComponent implements OnInit {
     this.uploader.uploadAll();
     //  When upload successful...
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
-      const submission_url = JSON.parse(response).secure_url;
+      const res = JSON.parse(response);
       const value = form.value;
       const newSubmission =  {
         u_id: this.userId,
         c_id: this.route.snapshot.params.id,
-        submission: submission_url,
+        submission: res.public_id,
+        resource_type: res.resource_type,
         details: form.value.details
       };
       //  POST to database

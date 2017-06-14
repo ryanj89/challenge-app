@@ -1,11 +1,11 @@
 <h3 *ngIf="submissions.length === 0">No Submissions Yet!</h3>
 <div *ngFor="let s of submissions; let i = index">
   <div class="row submission--user-submission">
-    <div class="col-md-2 submission--vote-section">
-      <span (click)="vote(s.u_id)" class="glyphicon glyphicon-arrow-up submission--vote-icon"></span>
+    <div class="col-md-1 submission--vote-section">
+      <span (click)="vote(s.id, i)" [ngClass]="{ 'voted': votedFor === s.id }" class="glyphicon glyphicon-arrow-up submission--vote-icon"></span>
       <p class="submission--score">{{ s.score }}</p>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="submission--user">
         <img 
           src="{{s.picture}}" 
@@ -20,7 +20,13 @@
       <p>{{ s.details }}</p>
     </div>
     <div class="col-md-5">
-      <img src="{{s.submission}}" class="img-responsive submission--submission-image"  alt="User Submission">
+        <cl-image *ngIf="s.resource_type === 'image'" class="img-responsive" [public-id]="s.submission" secure="true">
+          <cl-transformation width="300" height="200" crop="fill"></cl-transformation>
+        </cl-image>
+        <cl-video *ngIf="s.resource_type === 'video'" class="img-responsive" [public-id]="s.submission" secure="true">
+          <cl-transformation height="200"></cl-transformation>
+        </cl-video>
+      <!--<img src="{{s.submission}}" class="img-responsive submission--submission-image"  alt="User Submission">-->
     </div>
   </div>
   <hr>
