@@ -26,7 +26,7 @@ export class ChallengeNewComponent implements OnInit {
   uploadComplete: boolean = false;
   uploadProgress: number = 0;
   //  File uploader
-  private uploader: FileUploader;
+  uploader: FileUploader;
 
   constructor(
     private cloudinary: Cloudinary,

@@ -20,8 +20,8 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
   challengers: any[];
   submissions: any[];
 
-  isCompeting: boolean = false;
-  hasSubmited: boolean = false;
+  isCompeting: boolean = true;
+  hasSubmited: boolean = true;
   isSubmitting: boolean = false;
 
   constructor(private route: ActivatedRoute, private challengeService: ChallengeService, private databaseService: DatabaseService) {
@@ -40,14 +40,14 @@ export class ChallengeDetailComponent implements OnInit, OnDestroy {
         console.log(this.challengers);
         //  Check to see if the users has already joined this challenge
         const hasJoined = this.challengers.filter(c => c.u_id == this.userId);
-        if (hasJoined.length !== 0) {
-          this.isCompeting = true;
+        if (hasJoined.length === 0) {
+          this.isCompeting = false;
         }
         if (this.isCompeting === true) {
-          //  If they ahve already joined, check to see if they have submitted an attempt
+          //  If they have already joined, check to see if they have submitted an attempt
           const hasSubmitted = this.submissions.filter(s => s.u_id == this.userId);
-          if (hasSubmitted.length !== 0) {
-            this.hasSubmited = true;
+          if (hasSubmitted.length === 0) {
+            this.hasSubmited = false;
           }
         }
       })

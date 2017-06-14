@@ -15,8 +15,7 @@ export const AUTH_CONFIG: AuthConfig = {
   CLIENT_DOMAIN: 'rynj.auth0.com',
   RESPONSE_TYPE: 'token id_token',
   AUDIENCE: 'challenge-app-api',
-  // AUDIENCE: 'https://rynj.auth0.com/userinfo',
-  REDIRECT_PROD: 'https://challenge-accepted-f1c18.firebaseapp.com/callback',
+  REDIRECT_PROD: 'https://challenge-accepted-app-bf9de.firebaseapp.com/callback',
   REDIRECT_DEV: 'http://localhost:4200/callback',
   SCOPE: 'openid profile email read:user_idp_tokens'
 };

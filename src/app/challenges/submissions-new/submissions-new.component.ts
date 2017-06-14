@@ -15,7 +15,7 @@ export class SubmissionsNewComponent implements OnInit {
   isUploading: boolean = false;
   uploadProgress: number = 0;
   //  File uploader
-  private uploader: FileUploader;
+  uploader: FileUploader;
 
   constructor(
     private cloudinary: Cloudinary,
@@ -32,13 +32,9 @@ export class SubmissionsNewComponent implements OnInit {
     // Create the file uploader, wire it to upload to your account
     const uploaderOptions: FileUploaderOptions = {
       url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
-      // Upload files automatically upon addition to upload queue
       autoUpload: false,
-      // Use xhrTransport in favor of iframeTransport
       isHTML5: true,
-      // Calculate progress independently for each uploaded file
       removeAfterUpload: true,
-      // XHR request headers
       headers: [
         {
           name: 'X-Requested-With',
