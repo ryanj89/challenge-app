@@ -101,10 +101,10 @@ export class ChallengeNewComponent implements OnInit {
         value.name, 
         value.description, 
         this.profile.user_id, 
-        res.public_id,
-        res.resource_type, 
+        res.secure_url,
         value.category, 
         value.private);
+        console.log(newChallenge);
       //  POST to database
       this.databaseService.createChallenge(newChallenge);
     };

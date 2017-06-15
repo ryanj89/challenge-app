@@ -77,8 +77,7 @@ export class SubmissionsNewComponent implements OnInit {
       const newSubmission =  {
         u_id: this.userId,
         c_id: this.route.snapshot.params.id,
-        submission: res.public_id,
-        resource_type: res.resource_type,
+        submission: res.secure_url,
         details: form.value.details
       };
       //  POST to database
