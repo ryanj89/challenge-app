@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ResponseContentType } from '@angular/http';
 import { NgForm } from '@angular/forms';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { FileItem, FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Subscription } from 'rxjs/Rx';
 import { Cloudinary } from '@cloudinary/angular-4.x';
 
@@ -18,6 +18,7 @@ import { ChallengeService } from '../challenge.service';
 export class ChallengeNewComponent implements OnInit {
 
   profile: any;
+  @ViewChild('fileName') fileName: ElementRef;
   @ViewChild('challengeForm') challengeForm: NgForm;
   formSubscription: Subscription;
   categories: string[];
@@ -66,6 +67,10 @@ export class ChallengeNewComponent implements OnInit {
     };
     this.uploader = new FileUploader(uploaderOptions);
 
+    this.uploader.onAfterAddingFile = (fileItem: FileItem): any => {
+      this.fileName.nativeElement.value = fileItem.file.name;
+    }
+
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
@@ -99,7 +104,6 @@ export class ChallengeNewComponent implements OnInit {
         res.public_id,
         res.resource_type, 
         value.category, 
-        value.expires_at,
         value.private);
       //  POST to database
       this.databaseService.createChallenge(newChallenge);

@@ -10,17 +10,15 @@ export class Challenge {
   public public_id: string;
   public resource_type: string;
   public category: string;
-  public expires_at: Date;
   public is_private: boolean;
   
-  constructor(name: string, desc: string, creator_id: number, public_id: string, resource_type: string, category: string, expires_at: Date, is_private: boolean) {
+  constructor(name: string, desc: string, creator_id: number, public_id: string, resource_type: string, category: string, is_private: boolean) {
     this.name = name;
     this.description = desc;
     this.creator_id = creator_id;
     this.public_id = public_id;
     this.resource_type = resource_type;
     this.category = category;
-    this.expires_at = expires_at;
     this.is_private = is_private;
   }
 }

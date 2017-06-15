@@ -25,10 +25,22 @@
           class="form-control">
       </div>
 
-      <div class="form-group">
-        <label for="submission">Submission Video/Image</label>
-        <input type="file" id="submission" name="file" ng2FileSelect [uploader]="uploader" required>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="submission">My Submission</label>
+            <div class="input-group">
+              <label class="input-group-btn">
+                  <span class="btn btn-primary challenge--file-input">
+                      Browse&hellip; <input type="file" accept="image/*" id="submission" name="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+                  </span>
+              </label>
+              <input #fileName type="text" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
       </div>
+
 
       <div class="row">
         <div class="col-xs-12 col-sm-6">
@@ -45,17 +57,6 @@
                   <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
                 </optgroup>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label for="expires_at">Date to Complete</label>
-            <input 
-              type="date" 
-              id="expires_at" 
-              name="expires_at"
-              ngModel
-              required
-              class="form-control">
           </div>
 
         </div>

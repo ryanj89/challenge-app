@@ -1,3 +1,19 @@
 .upload-progress-bar {
   background-color: rgba(103, 114, 229, .92);
 }
+.submission--file-input {
+  background-color: rgb(103, 114, 229);
+  border-color: rgb(88, 98, 201);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.submission--button {
+  background-color: rgb(103, 114, 229);
+  border-color: rgb(88, 98, 201);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+.submission--button:hover {
+  box-shadow: 0 7px 14px rgba(50,50,93,.2), 0 3px 6px rgba(0,0,0,.08);
+  transform: translateY(-1px);
+}
