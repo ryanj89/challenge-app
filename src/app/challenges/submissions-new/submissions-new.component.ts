@@ -1,9 +1,7 @@
-import { FileItem } from 'ng2-file-upload/file-upload/file-item.class';
 import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
-import { Cloudinary } from '@cloudinary/angular-4.x';
+import { FileItem, FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { DatabaseService } from '../../shared/database.service';
 
 @Component({
@@ -20,7 +18,6 @@ export class SubmissionsNewComponent implements OnInit {
   uploader: FileUploader;
 
   constructor(
-    private cloudinary: Cloudinary,
     private zone: NgZone,
     private router: Router, 
     private route: ActivatedRoute, 
@@ -33,7 +30,7 @@ export class SubmissionsNewComponent implements OnInit {
   ngOnInit() {
     // Create the file uploader, wire it to upload to your account
     const uploaderOptions: FileUploaderOptions = {
-      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      url: `https://api.cloudinary.com/v1_1/ryanj89/image/upload`,
       autoUpload: false,
       isHTML5: true,
       removeAfterUpload: true,
@@ -52,7 +49,7 @@ export class SubmissionsNewComponent implements OnInit {
     
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       // Add Cloudinary's unsigned upload preset to the upload form
-      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      form.append('upload_preset', 'unvn5lqv');
       form.append('file', fileItem);
 
       // Use default "withCredentials" value for CORS requests

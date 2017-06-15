@@ -3,7 +3,7 @@ import { ResponseContentType } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { FileItem, FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Subscription } from 'rxjs/Rx';
-import { Cloudinary } from '@cloudinary/angular-4.x';
+import config from '../../config';
 
 import { Challenge } from '../challenge.model';
 import { DatabaseService } from '../../shared/database.service';
@@ -30,7 +30,6 @@ export class ChallengeNewComponent implements OnInit {
   uploader: FileUploader;
 
   constructor(
-    private cloudinary: Cloudinary,
     private zone: NgZone,
     private challengeService: ChallengeService, 
     private authService: AuthService, 
@@ -50,7 +49,7 @@ export class ChallengeNewComponent implements OnInit {
     this.categories = this.challengeService.categories;
     // Create the file uploader, wire it to upload to your account
     const uploaderOptions: FileUploaderOptions = {
-      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      url: `https://api.cloudinary.com/v1_1/ryanj89/image/upload`,
       // Upload files automatically upon addition to upload queue
       autoUpload: false,
       // Use xhrTransport in favor of iframeTransport
@@ -73,7 +72,7 @@ export class ChallengeNewComponent implements OnInit {
 
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       // Add Cloudinary's unsigned upload preset to the upload form
-      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      form.append('upload_preset', 'unvn5lqv');
       form.append('file', fileItem);
 
       // Use default "withCredentials" value for CORS requests

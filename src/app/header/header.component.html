@@ -20,15 +20,6 @@
             (click)="authService.login()">Login</a>
         </li>
       </ng-template>
-
-      <ng-template [ngIf]="authService.isAuthenticated()">
-        <!--<li><a class="welcome-user">Welcome {{ profile?.given_name }}!</a></li>-->
-        <li>
-          <a 
-            style="cursor: pointer;" 
-            (click)="authService.logout()">Logout</a>
-        </li>
-      </ng-template>
     </ul>
   </div>
 </nav>

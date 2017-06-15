@@ -1,16 +1,16 @@
-<div class="container-fluid">
+<div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
   <div class="row" *ngIf="authService.isAuthenticated()">
     <div class="col-xs-12">
       <br>
       <button 
-        routerLink="new"
+        routerLink="/challenges/new"
         type="button" 
         class="btn btn-primary challenge--button">Create Challenge</button>
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="col-xs-12" *ngFor="let challenge of challenges">
+    <div [ngClass]="{ 'col-md-8': !authService.isAuthenticated(), 'col-md-offset-2': !authService.isAuthenticated() }" class="col-xs-12" *ngFor="let challenge of challenges">
       <div class="panel panel-default challenge-item">
         <div class="panel-heading">
           <div class="challenge-item--header">

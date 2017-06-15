@@ -6,10 +6,6 @@ import { HttpModule } from '@angular/http';
 import { OrderByPipe } from './shared/order-by.pipe';
 //  File Upload Module
 import { FileUploadModule } from 'ng2-file-upload';
-//  Cloudinary Module
-import * as cloudinary from 'cloudinary-core';
-import { CloudinaryModule } from '@cloudinary/angular-4.x';
-import cloudinaryConfiguration from './config';
 //  Social Sharing Module
 import { ShareModule } from 'ng2share/share.module';
 //  Routing
@@ -63,7 +59,6 @@ import { UserService } from './shared/user.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     FileUploadModule,
     AppRoutingModule,
     AuthModule,
