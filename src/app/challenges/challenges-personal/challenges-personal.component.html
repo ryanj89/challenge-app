@@ -10,25 +10,25 @@
             *ngIf="sortType === 'name'"
             aria-hidden="true"></span>
       </th>
-      <th class="col-xs-5" (click)="sortType = 'desc'; sortReverse = !sortReverse">
+      <th class="col-xs-1" (click)="sortType = 'status'; sortReverse = !sortReverse">
+          Status
+          <span class="fa" 
+            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
+            *ngIf="sortType === 'status'"
+            aria-hidden="true"></span>
+      </th>
+      <th class="col-xs-6" (click)="sortType = 'desc'; sortReverse = !sortReverse">
           Description
           <span class="fa" 
             [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
             *ngIf="sortType === 'desc'"
             aria-hidden="true"></span>
       </th>
-      <th class="col-xs-1" (click)="sortType = 'points'; sortReverse = !sortReverse">
+      <th class="col-xs-2 text-center" (click)="sortType = 'points'; sortReverse = !sortReverse">
           Points
           <span class="fa" 
             [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
             *ngIf="sortType === 'points'"
-            aria-hidden="true"></span>
-      </th>
-      <th class="col-xs-1" (click)="sortType = 'expires'; sortReverse = !sortReverse">
-          Expires
-          <span class="fa" 
-            [ngClass]="{ 'fa-caret-down': !sortReverse, 'fa-caret-up': sortReverse }" 
-            *ngIf="sortType === 'expires'"
             aria-hidden="true"></span>
       </th>
     </tr>
@@ -36,14 +36,15 @@
   <tbody>
     <tr *ngFor="let c of personalChallenges | orderBy:sortType:sortReverse">
       <td>
-        <a routerLink="/challenges/{{c.id}}">{{ c.name }}</a>
+        <p><a routerLink="/challenges/{{c.id}}">{{ c.name }}</a></p>
+      </td>
+      <td>
         <span 
           class="badge" 
           [ngClass]="{ 'status-complete': c.status === 'completed', 'status-pending': c.status === 'pending', 'status-failed': c.status === 'failed' }">{{ c.status }}</span>
       </td>
       <td>{{ c.description }}</td>
       <td class="score">{{ c.score }}</td>
-      <td>{{ c.expires_at | date}}</td>
     </tr>
   </tbody>
 </table>
