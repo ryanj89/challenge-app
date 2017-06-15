@@ -20,13 +20,7 @@
       <p>{{ s.details }}</p>
     </div>
     <div class="col-md-5">
-        <cl-image *ngIf="s.resource_type === 'image'" class="img-responsive" [public-id]="s.submission" secure="true">
-          <cl-transformation width="300" height="200" crop="fill"></cl-transformation>
-        </cl-image>
-        <cl-video *ngIf="s.resource_type === 'video'" class="img-responsive" [public-id]="s.submission" secure="true">
-          <cl-transformation height="200"></cl-transformation>
-        </cl-video>
-      <!--<img src="{{s.submission}}" class="img-responsive submission--submission-image"  alt="User Submission">-->
+      <img src="{{s.submission}}" class="img-responsive submission--submission-image cover"  alt="User Submission">
     </div>
   </div>
   <hr>

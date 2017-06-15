@@ -19,13 +19,7 @@
             </p>
           </div>
         </div>
-        <cl-image *ngIf="challenge.resource_type === 'image'" class="img-responsive" [public-id]="challenge.public_id">
-          <cl-transformation width="900" height="250" crop="fill"></cl-transformation>
-        </cl-image>
-        <!--<cl-video *ngIf="challenge.resource_type === 'video'" class="img-responsive" [public-id]="challenge.public_id" secure="true">
-          <cl-transformation height="200"></cl-transformation>
-        </cl-video>-->
-        <!--<img [src]="challenge.video_url" class="img-responsive challenge-item--media" alt="Challenge Image">-->
+        <img [src]="challenge.challenge_img" class="img-responsive challenge-item--media cover" alt="Challenge Image">
         <div class="panel-body">
           <div class="challenge-item--creator">
             <img 

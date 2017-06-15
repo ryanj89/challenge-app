@@ -14,7 +14,7 @@
       <li *ngFor="let challenger of challengers"
         class="list-group-item chat-section--challenger">
           <!--<span [ngClass]="{ 'online' : chatService.activeChat.currentUsers.includes((challenger.id).toString()), 'offline' : !chatService.activeChat.currentUsers.includes((challenger.id).toString()) }" class="circle"></span> -->
-          <a routerLink="/users/{{challenger.id}}">{{ challenger.name }}</a>
+          <a class="chat-section--challenger-name" routerLink="/users/{{challenger.id}}">{{ challenger.name }}</a>
       </li>
     </div>
   </div>
