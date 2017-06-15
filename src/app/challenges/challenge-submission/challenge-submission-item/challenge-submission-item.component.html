@@ -18,6 +18,16 @@
       </div>
       <hr>
       <p>{{ s.details }}</p>
+      <br><br>
+      <span class="customizable">
+        <share-container
+              direction="horizontal"
+              [expandable]="false"
+              [textEnabled]="false"
+              [platforms]="['reddit','twitter','facebook','googlePlus', 'mail']"
+              [properties]="{title:'Check out this challenge!', description:s.details, img:s.submission}">
+        </share-container>
+      </span>
     </div>
     <div class="col-md-5">
       <img src="{{s.submission}}" class="img-responsive submission--submission-image cover"  alt="User Submission">

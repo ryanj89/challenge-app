@@ -22,6 +22,15 @@
             </p>
             <p>Categories: {{ challenge.category }}</p>
           </div>
+          <div>
+            <share-container
+                  direction="horizontal"
+                  [expandable]="false"
+                  [textEnabled]="false"
+                  [platforms]="['reddit','twitter','facebook','googlePlus', 'mail']"
+                  [properties]="{title:challenge.name, description:challenge.description, img:challenge.challenge_img}">
+            </share-container>
+          </div>
         </div>
         <div class="col-xs-12 col-md-6 challenge-detail--main-info">
           <img [src]="challenge.challenge_img" class="img-responsive challenge-detail--media" alt="Challenge Image">

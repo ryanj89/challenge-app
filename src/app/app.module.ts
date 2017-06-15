@@ -8,13 +8,10 @@ import { OrderByPipe } from './shared/order-by.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 //  Cloudinary Module
 import * as cloudinary from 'cloudinary-core';
-// import { Cloudinary } from 'cloudinary-core/cloudinary-core-shrinkwrap';
 import { CloudinaryModule } from '@cloudinary/angular-4.x';
 import cloudinaryConfiguration from './config';
-//  Angular Material
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+//  Social Sharing Module
+import { ShareModule } from 'ng2share/share.module';
 //  Routing
 import { AppRoutingModule } from "./app.routing.module";
 import { AuthModule } from "./auth/auth.module";
@@ -30,6 +27,10 @@ import { ChallengeNewComponent } from './challenges/challenge-new/challenge-new.
 import { ProfileComponent } from './profile/profile.component';
 import { ChallengesPersonalComponent } from './challenges/challenges-personal/challenges-personal.component';
 import { ChallengeDetailComponent } from './challenges/challenge-detail/challenge-detail.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChallengeSubmissionComponent } from './challenges/challenge-submission/challenge-submission.component';
+import { SubmissionsNewComponent } from './challenges/submissions-new/submissions-new.component';
+import { ChallengeSubmissionItemComponent } from './challenges/challenge-submission/challenge-submission-item/challenge-submission-item.component';
 //  Services
 import { DatabaseService } from './shared/database.service';
 import { ChallengeService } from './challenges/challenge.service';
@@ -37,14 +38,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from "./auth/auth-guard.service";
 import { ChatService } from './shared/chat.service';
 import { UserService } from './shared/user.service';
-import { ChatComponent } from './chat/chat.component';
-import { ChallengeSubmissionComponent } from './challenges/challenge-submission/challenge-submission.component';
-import { SubmissionsNewComponent } from './challenges/submissions-new/submissions-new.component';
-import { ChallengeSubmissionItemComponent } from './challenges/challenge-submission/challenge-submission-item/challenge-submission-item.component';
 
-// const cloudinaryLib = {
-//   Cloudinary: Cloudinary
-// }
 
 @NgModule({
   declarations: [
@@ -69,11 +63,11 @@ import { ChallengeSubmissionItemComponent } from './challenges/challenge-submiss
     BrowserModule,
     FormsModule,
     HttpModule,
-    // CloudinaryModule.forRoot(cloudinaryLib, cloudinaryConfiguration),
     CloudinaryModule.forRoot(cloudinary, cloudinaryConfiguration),
     FileUploadModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    ShareModule
   ],
   providers: [
     ChallengeService, 

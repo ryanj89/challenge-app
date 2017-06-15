@@ -33,11 +33,6 @@
           </div>
           <hr>
           <p>{{ challenge.description }}</p>
-          <!--<ul>
-            <li>categories: {{ challenge.category }}</li>
-            <li>private?: {{ challenge.private }}</li>
-            <li>expires: {{ challenge.expires_at | date }}</li>
-          </ul>-->
         </div>
         <div class="panel-footer">
           <p [ngPlural]="challenge.competitor_count">
@@ -45,7 +40,6 @@
             <ng-template ngPluralCase="=1">{{ challenge.competitor_count }} Competitor</ng-template>
             <ng-template ngPluralCase="=2">{{ challenge.competitor_count }} Competitors</ng-template>
           </p>
-          <!--<button (click)="joinChallenge(challenge.id)" class="btn btn-primary challenge--button" type="button">Join!</button>-->
         </div>
       </div>
   </div>

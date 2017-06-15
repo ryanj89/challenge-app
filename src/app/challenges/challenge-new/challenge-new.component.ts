@@ -104,7 +104,6 @@ export class ChallengeNewComponent implements OnInit {
         res.secure_url,
         value.category, 
         value.private);
-        console.log(newChallenge);
       //  POST to database
       this.databaseService.createChallenge(newChallenge);
     };
