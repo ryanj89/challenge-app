@@ -1,17 +1,12 @@
 <nav class="navbar main-navbar">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand nav-logo" routerLink="/">
-        <img src="./assets/CA-logo.png" class="logo" alt="Logo">
+      <a class="navbar-brand nav-logo" routerLink="/challenges">
+        <img src="./assets/CA-logo_v2.png" class="logo" alt="Logo">
         Challenge Accepted
       </a>
     </div>
 
-    <!--<ul class="nav navbar-nav">
-      <li routerLinkActive="active">
-        <a routerLink="/challenges">Challenges</a>
-      </li>
-    </ul>-->
     <ul class="nav navbar-nav navbar-right">
       <ng-template [ngIf]="!authService.isAuthenticated()">
         <li>
