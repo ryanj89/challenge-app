@@ -1,3 +1,24 @@
-<div class="jumbotron">
-  <h1>Challenge Accepted</h1>
+<div class="jumbotron hero-image">
+  <div class="row hero-section">
+    <div class="col-xs-12 col-sm-7 col-lg-6 col-md-offset-1">
+      <img class="img-responsive logo" src="./assets/CA-hero-logo.png" alt="Logo">
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <div class="hero-buttons">
+        <button 
+          class="btn btn-block btn-default btn-lg home--get-started-button" 
+          (click)="authService.login()"
+          type="button">Get Started</button>
+        <button 
+          class="btn btn-block btn-primary btn-lg home--challenge-button" 
+          routerLink="/challenges"
+          type="button">View Challenges</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <p class="hero-text">Push yourself to get out and be active by competing in challenges created by users like YOU!</p>
+    </div>
+  </div>
 </div>

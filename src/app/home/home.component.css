@@ -1,0 +1,65 @@
+h1 {
+  text-align: center;
+  color: rgb(62, 207, 142);
+}
+
+.hero-image {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  border-radius: 0;
+  background-color: rgb(13, 43, 62);
+}
+
+.hero-section {
+  margin-top: 75px;
+}
+
+.hero-text {
+  font-size: 24px;
+  color: #fcfcfc;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.logo {
+  /*min-height: 200px;*/
+  margin: 0 auto;
+}
+
+.hero-buttons {
+  margin-top: 50px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home--get-started-button {
+  letter-spacing: 1px;
+  background-color: rgb(13, 43, 62);
+  border: 2px solid #fcfcfc;
+  color: #fcfcfc;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+.home--get-started-button:hover {
+  box-shadow: 0 7px 14px rgba(50,50,93,.2), 0 3px 6px rgba(0,0,0,.08);
+  transform: scale(1.01);
+  /*transform: translateY(-1px);*/
+}
+
+.home--challenge-button {
+  letter-spacing: 1px;
+  background-color: rgb(103, 114, 229);
+  border-color: rgb(88, 98, 201);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+.home--challenge-button:hover {
+  box-shadow: 0 7px 14px rgba(50,50,93,.2), 0 3px 6px rgba(0,0,0,.08);
+  transform: scale(1.01);
+  /*transform: translateY(-1px);*/
+}

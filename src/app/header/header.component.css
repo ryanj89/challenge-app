@@ -4,19 +4,32 @@
   background-color: rgba(13, 43, 62, 1);
   box-shadow: 0 7px 14px rgba(50,50,93,.11), 0 3px 6px rgba(0,0,0,.08);
 }
+
 .main-navbar a {
   color: #fff;
 }
+
 .main-navbar a:hover {
   background-color: rgba(13, 43, 62, 1);
 }
+
 .sidebar {
   height: 506px;
 }
+
 .nav-logo {
   padding-top: 8px;
 }
+
 .logo {
   display: inline-block;
   height: 36px;
+}
+
+.logo-text {
+  letter-spacing: 1px;
+  color: rgba(73, 237, 163, 0.9);
+}
+.logo-text:hover {
+  color: rgba(73, 237, 163, 1);
 }
