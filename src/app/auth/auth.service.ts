@@ -35,7 +35,7 @@ export class AuthService {
           .toPromise()
           .then(results => {
             const user = results.json();
-            if (!user) {
+            if (user.length === 0) {
               this.http.post(this.databaseService.DATABASE_URL + 'users', profile)
                 .toPromise()
                 .then(results => {
