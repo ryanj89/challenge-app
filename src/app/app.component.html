@@ -9,9 +9,9 @@
 
     <div id="content"  [class.toggled]="isToggled && authService.isAuthenticated()">
 
-      <app-header (onToggled)="onActive()"></app-header>
+        <app-header (onToggled)="onActive()"></app-header>
 
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
 
     </div>
 
@@ -40,9 +40,7 @@
 
 
 
-<!--<app-header></app-header>
-
-<div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
+<!--<div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
 
 
   <div class="row">
