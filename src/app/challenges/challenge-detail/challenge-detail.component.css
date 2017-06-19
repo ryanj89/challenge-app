@@ -9,6 +9,10 @@
   transform: translateY(-1px);
 }
 
+.challenge--button-group {
+  padding: 15px;
+}
+
 .challenge-detail--challenge-info {
   margin-top: 20px;
 }
@@ -36,9 +40,12 @@
   max-height: 280px;
 }
 
-.challenge-detail--challenge-details {
-  min-height: 140px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+.card {
+  border: none;
+  background: #fcfcfc;
+}
+
+.card-footer {
+  background: #fcfcfc;
 }

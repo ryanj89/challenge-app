@@ -15,7 +15,7 @@ import { UserService } from '../shared/user.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   profile: any;
-  chatActive = true;
+  chatActive = false;
   currentMsg = '';
   challengers = [];
   challengersSub: Subscription;

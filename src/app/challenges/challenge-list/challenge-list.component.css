@@ -1,3 +1,4 @@
+
 .challenge--button {
   background-color: rgb(103, 114, 229);
   border-color: rgb(88, 98, 201);
@@ -23,7 +24,7 @@
 .challenge-item--creator-image {
   width: 45px;
   height: 45px;
-  border-radius: 25px;
+  border-radius: 50%;
   margin-right: 8px;
 }
 .challenge-item--creation-date {
@@ -39,12 +40,6 @@
   object-fit: cover;
 }
 
-.panel-heading {
-  min-height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .panel-title {
   font-size: 20px;
 }
@@ -54,4 +49,23 @@
 }
 .panel-footer {
   background-color: #efefef;
+}
+
+
+.card-title {
+  margin-top: 0.75rem;
+}
+.card {
+  border: none;
+  background: #fff;
+}
+
+.card-header {
+  border: none;
+  background: #fff;
+}
+
+.card-footer {
+  border-bottom: none;
+  background: #fff;
 }

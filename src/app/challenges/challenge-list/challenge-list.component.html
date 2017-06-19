@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
+<div class="container">
   <div class="row" >
     <div class="col-12" *ngIf="authService.isAuthenticated()">
       <br>
@@ -9,33 +9,40 @@
     </div>
   </div>
   <br>
-  <div class="row justify-content-center">
-    <div [ngClass]="{ 'col-md-8': !authService.isAuthenticated(), 'col-md-offset-2': !authService.isAuthenticated() }" class="col-xs-12" *ngFor="let challenge of challenges">
-      <div class="panel panel-default challenge-item">
-        <div class="panel-heading">
-          <div class="challenge-item--header">
-            <p class="panel-title">
+
+  <div class="row justify-content-center" *ngFor="let challenge of challenges">
+    <div class="col-12 pl-0 pr-0 pl-sm-3 pr-sm-3 mb-sm-4">
+
+      <div class="card challenge-item">
+        <!-- Challenge Header -->
+        <div class="card-header">
+            <h4 class="card-title">
               <a routerLink="/challenges/{{challenge.id}}">{{ challenge.name }}</a>
-            </p>
-          </div>
+            </h4>
         </div>
-        <img [src]="challenge.challenge_img" class="img-responsive challenge-item--media cover" alt="Challenge Image">
-        <div class="panel-body">
+
+        <!-- Challenge Image -->
+        <img [src]="challenge.challenge_img" class="img-fluid challenge-item--media cover" alt="Challenge Image">
+        <div class="card-block">
+        <!--<div class="panel-body">-->
           <div class="challenge-item--creator">
             <img 
               src="{{challenge.user_picture}}" 
-              class="img-responsive challenge-item--creator-image" 
+              class="img-fluid challenge-item--creator-image" 
               alt="User Image">
             <div class="challenge-item--creator-info">
               <a routerLink="/users/{{challenge.creator_id}}">{{ challenge.creator }}</a>
               <p class="challenge-item--creation-date">{{ challenge.created_at | date }}</p>
             </div>
           </div>
-          <hr>
-          <p>{{ challenge.description }}</p>
+          <!--<hr>-->
+          <div class="card-block">
+            <p class="card-text">{{ challenge.description }}</p>
+
+          </div>
         </div>
-        <div class="panel-footer">
-          <p [ngPlural]="challenge.competitor_count">
+        <div class="card-footer">
+          <p class="card-text" [ngPlural]="challenge.competitor_count">
             <ng-template ngPluralCase="=0">No Competitors!</ng-template>
             <ng-template ngPluralCase="=1">{{ challenge.competitor_count }} Competitor</ng-template>
             <ng-template ngPluralCase="=2">{{ challenge.competitor_count }} Competitors</ng-template>

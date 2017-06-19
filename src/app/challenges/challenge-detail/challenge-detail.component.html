@@ -1,54 +1,75 @@
-<div class="row" *ngIf="challenge">
-  <div class="col-xs-12">
-    <section class="challenge-detail--challenge-info">
-      <button *ngIf="!isCompeting" (click)="joinChallenge(challenge.id)" class="btn btn-primary challenge--button" type="button">Join!</button>
-      <button *ngIf="!hasSubmited && isCompeting" (click)="isSubmitting = !isSubmitting" class="btn btn-primary challenge--button" type="button">{{ isSubmitting ? 'Back' : 'Submit' }}</button>
+<div class="container">
+  <div class="row" *ngIf="challenge">
+    <div class="col-12">
+
+      <div class="challenge--button-group">
+        <button *ngIf="!isCompeting" (click)="joinChallenge(challenge.id)" class="btn btn-primary challenge--button" type="button">Join!</button>
+        <button *ngIf="!hasSubmited && isCompeting" (click)="isSubmitting = !isSubmitting" class="btn btn-primary challenge--button" type="button">{{ isSubmitting ? 'Back' : 'Submit' }}</button>
+      </div>
+
       <div class="row">
-        <div class="col-xs-12 col-md-6">
-          <h2>{{ challenge.name }}</h2>
-          <div class="challenge-detail--creator">
-            <img 
-              src="{{challenge.user_picture}}" 
-              class="img-responsive challenge-detail--creator-image" 
-              alt="User Image">
-            <div class="challenge-detail--creator-info">
-              <a routerLink="/users/{{challenge.creator_id}}">{{ challenge.creator }}</a>
-              <p class="challenge-detail--creation-date">{{ challenge.created_at | date }}</p>
+
+        <div class="col-12 push-lg-5 col-lg-7 challenge-detail--main-info">
+          <img 
+            [src]="challenge.challenge_img" 
+            class="img-responsive challenge-detail--media" 
+            alt="Challenge Image">
+        </div>          
+        
+        <div class="col-12 pull-lg-7 col-lg-5">
+          <div class="card">
+            <div class="card-block">
+
+              <h4 class="card-title">{{ challenge.name }}</h4>
+
+
+              <div class="challenge-detail--creator">
+                <img 
+                  src="{{challenge.user_picture}}" 
+                  class="img-fluid challenge-detail--creator-image" 
+                  alt="User Image">
+                <div class="challenge-detail--creator-info">
+                  <a routerLink="/users/{{challenge.creator_id}}">{{ challenge.creator }}</a>
+                  <p class="challenge-detail--creation-date">{{ challenge.created_at | date }}</p>
+                </div>
+              </div>
+
+              <hr>
+
+              <p class="card-text">{{ challenge.description }}</p>
+
+            </div>
+              
+            <div class="card-block">
+              <p class="card-text">Categories: {{ challenge.category }}</p>
+            </div>
+            
+            <div class="card-footer">
+              <share-container
+                    direction="horizontal"
+                    [expandable]="false"
+                    [textEnabled]="false"
+                    [platforms]="['reddit','twitter','facebook','googlePlus', 'mail']"
+                    [properties]="{title:challenge.name, description:challenge.description, img:challenge.challenge_img}">
+              </share-container>
             </div>
           </div>
-          <hr>
-          <div class="challenge-detail--challenge-details">
-            <p>{{ challenge.description }}
-            </p>
-            <p>Categories: {{ challenge.category }}</p>
-          </div>
-          <div>
-            <share-container
-                  direction="horizontal"
-                  [expandable]="false"
-                  [textEnabled]="false"
-                  [platforms]="['reddit','twitter','facebook','googlePlus', 'mail']"
-                  [properties]="{title:challenge.name, description:challenge.description, img:challenge.challenge_img}">
-            </share-container>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-6 challenge-detail--main-info">
-          <img [src]="challenge.challenge_img" class="img-responsive challenge-detail--media" alt="Challenge Image">
-        </div>
-      </div>
-    </section>
-    
-    <hr>
 
-    <div class="row">
-      <div class="col-xs-12">
+
+        </div>
         
-        <app-chat *ngIf="!isSubmitting"></app-chat>
-
-        <app-submissions-new *ngIf="isSubmitting"></app-submissions-new>
-
       </div>
-    </div>
 
+      <div class="row">
+        <div class="col-12">
+          
+          <app-chat *ngIf="!isSubmitting"></app-chat>
+
+          <app-submissions-new *ngIf="isSubmitting"></app-submissions-new>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
