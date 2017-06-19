@@ -1,41 +1,46 @@
+<div class="wrapper">
 
-<div id="wrapper" [class.toggled]="isToggled && authService.isAuthenticated()">
-    
-    <app-header (onToggled)="onToggled($event)"></app-header>
-    
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper" *ngIf="authService.isAuthenticated()">
 
-        <app-sidebar></app-sidebar>
+    <div id="sidebar" [class.active]="isToggled && authService.isAuthenticated()">
+
+        <app-sidebar *ngIf="authService.isAuthenticated()"></app-sidebar>
+  
+    </div>
+
+    <div id="content"  [class.toggled]="isToggled && authService.isAuthenticated()">
+
+      <app-header (onToggled)="onActive()"></app-header>
+
+      <router-outlet></router-outlet>
 
     </div>
-    <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-        <!--<button (click)="toggled()" type="button" class="btn btn-default menu-toggle" id="menu-toggle">
-          <i *ngIf="isToggled" class="fa fa-chevron-left" aria-hidden="true"></i>
-          <i *ngIf="!isToggled" class="fa fa-chevron-right" aria-hidden="true"></i>
-        </button>-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 p-0 p-md-3" [ngClass]="authService.isAuthenticated() ? 'col-md-6' : 'col-md-12'">
-                <!--<div class="col-12 col-md-8">-->
-
-                    <router-outlet></router-outlet>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-
-    <div id="overlay"></div>
+    <div id="overlay" (click)="onActive()" [class.active]="isToggled && isMobile && authService.isAuthenticated()"><div>
 
 </div>
-<!-- /#wrapper -->
-<!--
-<app-header></app-header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<app-header></app-header>
 
 <div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
 

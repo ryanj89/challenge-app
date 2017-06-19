@@ -1,11 +1,11 @@
 .navbar {
+  width: 100%;
   background-color: rgba(13, 43, 62, 1);
 }
 
 .nav-link {
   background-color: rgba(13, 43, 62, 1);
 }
-
 
 .main-navbar {
   margin-bottom: 0;

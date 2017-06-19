@@ -1,7 +1,8 @@
-import { DatabaseService } from '../shared/database.service';
-import { Subscription } from 'rxjs/Rx';
-import { AuthService } from '../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+
+import { DatabaseService } from '../shared/database.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -30,5 +31,4 @@ export class SidebarComponent implements OnInit  {
         (err) => console.log(err.message || err)
       );
   }
-
 }
