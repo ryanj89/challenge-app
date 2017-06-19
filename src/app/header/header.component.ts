@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -9,6 +9,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent {
   profile: any;
+  @Output() onToggled = new EventEmitter<boolean>();
+  toggled: boolean = true;
 
   constructor(public authService: AuthService) {
     const profile = localStorage.getItem('profile');
@@ -18,5 +20,10 @@ export class HeaderComponent {
     this.authService.onLoggedIn.subscribe(updatedProfile => {
       this.profile = updatedProfile;
     });
+  }
+
+  toggle(state: boolean) {
+    this.onToggled.emit(state);
+    this.toggled = !this.toggled;
   }
 }

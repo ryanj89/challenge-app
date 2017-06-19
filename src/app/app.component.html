@@ -1,33 +1,57 @@
-<!--<div fxLayout="column" fxFlex>
 
-  <md-toolbar color="primary">
-    <span>Challenge Accepted</span>
-  </md-toolbar>
+<div id="wrapper" [class.toggled]="isToggled && authService.isAuthenticated()">
+    
+    <app-header (onToggled)="onToggled($event)"></app-header>
+    
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" *ngIf="authService.isAuthenticated()">
 
-  <md-sidenav-container fxFlex>
-    <md-sidenav mode="side" opened>
-      Sidenav
-    </md-sidenav>
-    <div class="content">
-      Page Content
+        <app-sidebar></app-sidebar>
+
     </div>
-  </md-sidenav-container>
+    <!-- /#sidebar-wrapper -->
 
-</div>-->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <!--<button (click)="toggled()" type="button" class="btn btn-default menu-toggle" id="menu-toggle">
+          <i *ngIf="isToggled" class="fa fa-chevron-left" aria-hidden="true"></i>
+          <i *ngIf="!isToggled" class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 p-0 p-md-3" [ngClass]="authService.isAuthenticated() ? 'col-md-6' : 'col-md-12'">
+                <!--<div class="col-12 col-md-8">-->
 
+                    <router-outlet></router-outlet>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <div id="overlay"></div>
+
+</div>
+<!-- /#wrapper -->
+<!--
 <app-header></app-header>
 
-<main class="container-fluid">
+<div [ngClass]="{ 'container-fluid': authService.isAuthenticated(), 'container': !authService.isAuthenticated() }" class="">
+
+
   <div class="row">
-    <div class="col-md-3 sidebar" *ngIf="authService.isAuthenticated()">
+    <div class="col-12 col-md-3 p-0" *ngIf="authService.isAuthenticated()">
 
       <app-sidebar></app-sidebar>
 
     </div>
-    <div class="col-sm-12" [ngClass]="authService.isAuthenticated() ? 'col-md-8' : 'col-md-12'">
+
+    <div class="col-12 p-0 p-md-3" [ngClass]="authService.isAuthenticated() ? 'col-md-6' : 'col-md-12'">
       
       <router-outlet></router-outlet>
 
     </div>
+    
   </div>
-</main>
+</div>-->

@@ -1,23 +1,44 @@
-<div class="row">
-    <div class="panel panel-default sidenav">
-      <div class="panel-heading sidenav-profile--heading">
-          <a 
-            routerLink="/profile" 
-            class="sidenav-profile--user-info">
-            <img class="sidenav-profile--picture img-responsive" [src]="profile?.picture" alt="Profile Picture">
-            <h4 class="user-info--name">{{ profile?.name }}</h4>
-          </a>
-          <div class="sidenav-profile--user-score">
-            <p>Challenger Score: {{ profile.challenger_score }}</p>
-            <p>Submission Score: {{ profile.submission_score }}</p>
-          </div>
-      </div>
-        <div class="list-group sidenav-navlist">
-          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/my-challenges">My Challenges</a>
-          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/challenges">All Challenges</a>
-          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Categories</a>
-          <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Groups</a>
-          <a class="list-group-item sidenav-navlist--item" (click)="authService.logout()">Logout</a>
-        </div>
+<div class="card sidebar-nav">
+  <div class="card-block sidenav-profile--heading">
+      <a 
+        routerLink="/profile" 
+        class="sidenav-profile--user-info">
+        <h4 class="card-title">
+          <img class="sidenav-profile--picture img-fluid" [src]="profile?.picture" alt="Profile Picture"> {{ profile?.name }}
+        </h4>
+      </a>
+      <br>
+      <p class="card-text sidenav-profile--user-score">
+        <span>Challenger Score: {{ profile.challenger_score }}</span>
+        <span>Submission Score: {{ profile.submission_score }}</span>
+      </p>
+  </div>
+    <div class="list-group sidenav-navlist">
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/my-challenges">My Challenges</a>
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/challenges">All Challenges</a>
+      <!--<a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Categories</a>-->
+      <!--<a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Groups</a>-->
+      <a class="list-group-item sidenav-navlist--item" (click)="authService.logout()">Logout</a>
     </div>
 </div>
+<!--<div class="panel panel-default sidenav">
+  <div class="panel-heading sidenav-profile--heading">
+      <a 
+        routerLink="/profile" 
+        class="sidenav-profile--user-info">
+        <img class="sidenav-profile--picture img-responsive" [src]="profile?.picture" alt="Profile Picture">
+        <h4 class="user-info--name">{{ profile?.name }}</h4>
+      </a>
+      <div class="sidenav-profile--user-score">
+        <p>Challenger Score: {{ profile.challenger_score }}</p>
+        <p>Submission Score: {{ profile.submission_score }}</p>
+      </div>
+  </div>
+    <div class="list-group sidenav-navlist">
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/my-challenges">My Challenges</a>
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active" routerLink="/challenges">All Challenges</a>
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Categories</a>
+      <a class="list-group-item sidenav-navlist--item" routerLinkActive="active">Groups</a>
+      <a class="list-group-item sidenav-navlist--item" (click)="authService.logout()">Logout</a>
+    </div>
+</div>-->

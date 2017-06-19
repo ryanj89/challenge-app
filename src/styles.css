@@ -1,4 +1,6 @@
 body {
   font-family: 'Overpass', sans-serif;
   background-color: #fcfcfc;
+  overflow-x: hidden;
 }
+
